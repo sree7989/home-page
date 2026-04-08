@@ -6,12 +6,31 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { useState } from "react";
 
 export default function HeroSlider() {
+  const [activeCountry, setActiveCountry] = useState<string | null>(null);
 
   const CTA_BUTTON = "mt-6 inline-flex w-fit items-center gap-2 bg-gradient-to-r from-orange-400 to-blue-500 text-white px-6 py-2 rounded-full text-sm font-medium shadow-md";
-
+const visaData: any = {
+  Canada: [
+    "PR Visa",
+    "Work Visa",
+    "Student Visa",
+    "Express Entry Program",
+    "PNP",
+    "Business Visa",
+    "Visit Visa",
+    "Digital Nomad Visa",
+  ],
+  Australia: ["Student Visa", "PR Visa", "Work Visa"],
+  Germany: ["Job Seeker Visa", "EU Blue Card", "Work Visa"],
+  UK: ["Student Visa", "Skilled Worker Visa"],
+  UAE: ["Work Visa", "Visit Visa"],
+  "New Zealand": ["Student Visa", "Work Visa", "PR Visa"],
+};
   return (
+     <>
     <Swiper
   modules={[Autoplay, Navigation]}  
   navigation                         
@@ -54,7 +73,7 @@ export default function HeroSlider() {
           World-class education, PR opportunities & global career growth
         </p>
 
-        <button className={CTA_BUTTON}>
+        <button onClick={() => setActiveCountry("Australia")} className={CTA_BUTTON}>
           Free Assessment →
         </button>
       </div>
@@ -68,7 +87,7 @@ export default function HeroSlider() {
           <div className="w-[320px] h-[320px] rounded-full overflow-hidden shadow-2xl border-4 border-white">
             <img
               src="/australia-students.jpg"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-center scale-110"
             />
           </div>
 
@@ -116,7 +135,7 @@ export default function HeroSlider() {
   <br />
   opportunity card benefits
 </p>
-      <button className={`${CTA_BUTTON} mt-6`}>
+      <button onClick={() => setActiveCountry("Germany")} className={`${CTA_BUTTON} mt-6`}>
         Free Assessment →
       </button>
     </div>
@@ -198,7 +217,7 @@ export default function HeroSlider() {
         PR visas, express entry & high quality lifestyle opportunities
       </p>
 
-      <button className={CTA_BUTTON}>Free Assessment →</button>
+      <button onClick={() => setActiveCountry("Canada")} className={CTA_BUTTON}>Free Assessment →</button>
     </div>
 
     {/* RIGHT - 4 CIRCLES */}
@@ -251,7 +270,7 @@ export default function HeroSlider() {
         Top universities, global exposure & post-study work visa
       </p>
 
-      <button className={CTA_BUTTON}>Free Assessment →</button>
+      <button onClick={() => setActiveCountry("UK")} className={CTA_BUTTON}>Free Assessment →</button>
     </div>
 
     {/* 🔥 RIGHT SIDE (Option 1 – Icons List) */}
@@ -291,7 +310,7 @@ export default function HeroSlider() {
             <p className="mt-4">
               Tax-free salary & modern lifestyle opportunities
             </p>
-            <button className={CTA_BUTTON}>Free Assessment →</button>
+            <button onClick={() => setActiveCountry("UAE")} className={CTA_BUTTON}>Free Assessment →</button>
           </div>
         </div>
       </SwiperSlide>
@@ -336,7 +355,7 @@ export default function HeroSlider() {
         High quality education, peaceful lifestyle & excellent post-study work opportunities
       </p>
 
-      <button className={`${CTA_BUTTON} mt-6`}>
+    <button onClick={() => setActiveCountry("New Zealand")} className={`${CTA_BUTTON} mt-6`}>
         Free Assessment →
       </button>
 
@@ -375,5 +394,178 @@ export default function HeroSlider() {
 </SwiperSlide>
 
     </Swiper>
+   {activeCountry && (
+  <div className="fixed inset-0 bg-white z-50 flex">
+
+    {/* LEFT SIDE */}
+    <div className="w-1/3 p-16">
+    <h1 className="text-5xl font-bold bg-gradient-to-r from-orange-600 via-pink-600 to-blue-600 text-transparent bg-clip-text">
+  Choose Your Dream Destination
+</h1>
+      <p className="mt-6 text-gray-900 text-lg leading-relaxed">
+  VJC Overseas provides expert guidance to help you choose the right visa pathway for your goals.  
+  Our team ensures a smooth and transparent process from application to approval.  
+  We specialize in global immigration, study, and work visa solutions tailored to your needs.  
+  With personalized support and proven expertise, we increase your chances of visa success.  
+  Start your journey abroad with confidence and trust VJC Overseas every step of the way.
+</p>
+    </div>
+
+    {/* RIGHT SIDE CARDS */}
+    <div className="w-2/3 grid grid-cols-3 gap-8 p-10">
+
+      {/* CANADA */}
+      <div className="group [perspective:1000px]">
+        <div className="relative h-[200px] w-full duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+
+          {/* FRONT */}
+          <div className="absolute inset-0 bg-gray-400 flex flex-col justify-center items-center relative">
+
+  <img 
+    src="/canada-map.png" 
+    className="w-full h-[70%] object-contain scale-110"
+  />
+
+  <span className="absolute bottom-4 w-full text-center text-white font-bold text-lg tracking-wide">
+    CANADA
+  </span>
+
+</div>
+
+          {/* BACK */}
+          <div className="absolute inset-0 bg-white p-4 [transform:rotateY(180deg)] [backface-visibility:hidden] overflow-y-auto">
+            {visaData.Canada.map((v: string, i: number) => (
+              <p key={i}>› {v}</p>
+            ))}
+          </div>
+
+        </div>
+      </div>
+
+      {/* AUSTRALIA */}
+      <div className="group [perspective:1000px]">
+        <div className="relative h-[200px] w-full duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+
+          <div className="absolute inset-0 bg-gray-400 flex items-center justify-center [backface-visibility:hidden]">
+           <img 
+  src="/australia-map.png" 
+  className="w-full h-full object-cover scale-125"
+/><span className="absolute bottom-[8%] left-[2%] text-red-600 font-bold text-xl tracking-wide drop-shadow-md">
+  AUSTRALIA
+</span>
+          </div>
+
+          <div className="absolute inset-0 bg-white p-4 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+            {visaData.Australia.map((v: string, i: number) => (
+              <p key={i}>› {v}</p>
+            ))}
+          </div>
+
+        </div>
+      </div>
+
+      {/* GERMANY */}
+      <div className="group [perspective:1000px]">
+        <div className="relative h-[200px] w-full duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+
+          <div className="absolute inset-0 bg-gray-400 flex items-center justify-center [backface-visibility:hidden]">
+          <img 
+  src="/germany-map.png" 
+  className="w-full h-full object-cover scale-125"
+/>
+            <span className="absolute bottom-3 text-white font-bold">GERMANY</span>
+          </div>
+
+          <div className="absolute inset-0 bg-white p-4 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+            {visaData.Germany.map((v: string, i: number) => (
+              <p key={i}>› {v}</p>
+            ))}
+          </div>
+
+        </div>
+      </div>
+
+      {/* UK */}
+      <div className="group [perspective:1000px]">
+        <div className="relative h-[200px] w-full duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+
+          <div className="absolute inset-0 bg-gray-400 flex items-center justify-center [backface-visibility:hidden]">
+          <img 
+  src="/uk-map.png" 
+  className="w-full h-full object-cover scale-125"
+/>
+            <span className="absolute bottom-0 text-white font-bold">UK</span>
+          </div>
+
+          <div className="absolute inset-0 bg-white p-4 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+            {visaData.UK.map((v: string, i: number) => (
+              <p key={i}>› {v}</p>
+            ))}
+          </div>
+
+        </div>
+      </div>
+      <div className="group [perspective:1000px]">
+  <div className="relative h-[200px] w-full duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+
+    <div className="absolute inset-0 bg-gray-400 flex items-center justify-center [backface-visibility:hidden]">
+      <img 
+  src="/usa-map.png" 
+  className="w-full h-full object-cover scale-125"
+/>
+     <span className="absolute bottom-[0%] left-1/2 -translate-x-1/2 text-blue-900 font-bold text-xl tracking-wide drop-shadow-md">
+  USA
+</span>
+    </div>
+
+    <div className="absolute inset-0 bg-white p-4 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+      {[
+        "H1B Visa",
+        "F1 Student Visa",
+        "B1/B2 Visit Visa",
+        "Green Card",
+      ].map((v, i) => (
+        <p key={i}>› {v}</p>
+      ))}
+    </div>
+
+  </div>
+</div>
+<div className="group [perspective:1000px]">
+  <div className="relative h-[200px] w-full duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+
+    <div className="absolute inset-0 bg-gray-400 flex items-center justify-center [backface-visibility:hidden]">
+      <img 
+  src="/nz-map.png" 
+  className="w-full h-full object-cover scale-125"
+/>
+      <span className="absolute bottom-3 text-white font-bold">NEW ZEALAND</span>
+    </div>
+
+    <div className="absolute inset-0 bg-white p-4 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+      {visaData["New Zealand"].map((v: string, i: number) => (
+        <p key={i}>› {v}</p>
+      ))}
+    </div>
+
+  </div>
+</div>
+
+
+    </div>
+
+    {/* CLOSE BUTTON */}
+    <button
+      onClick={() => setActiveCountry(null)}
+      className="absolute top-6 right-10 text-black text-xl"
+    >
+      ✕
+    </button>
+
+  </div>
+)}
+      
+  
+</>
   );
 }
