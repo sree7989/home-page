@@ -74,7 +74,7 @@ const visaData: any = {
         </p>
 
         <button onClick={() => setActiveCountry("Australia")} className={CTA_BUTTON}>
-          Free Assessment →
+         Get Started →
         </button>
       </div>
 
@@ -136,7 +136,7 @@ const visaData: any = {
   opportunity card benefits
 </p>
       <button onClick={() => setActiveCountry("Germany")} className={`${CTA_BUTTON} mt-6`}>
-        Free Assessment →
+        Get Started →
       </button>
     </div>
 
@@ -176,7 +176,7 @@ const visaData: any = {
       <p className="mt-4 text-lg">
         Your journey to abroad starts with VJC Overseas
       </p>
-      <button className={CTA_BUTTON}>Free Assessment →</button>
+      <button className={CTA_BUTTON}>Get Started →</button>
     </div>
 
   </div>
@@ -217,7 +217,7 @@ const visaData: any = {
         PR visas, express entry & high quality lifestyle opportunities
       </p>
 
-      <button onClick={() => setActiveCountry("Canada")} className={CTA_BUTTON}>Free Assessment →</button>
+      <button onClick={() => setActiveCountry("Canada")} className={CTA_BUTTON}>Get Started →</button>
     </div>
 
     {/* RIGHT - 4 CIRCLES */}
@@ -270,7 +270,7 @@ const visaData: any = {
         Top universities, global exposure & post-study work visa
       </p>
 
-      <button onClick={() => setActiveCountry("UK")} className={CTA_BUTTON}>Free Assessment →</button>
+      <button onClick={() => setActiveCountry("UK")} className={CTA_BUTTON}>Get Started →</button>
     </div>
 
     {/* 🔥 RIGHT SIDE (Option 1 – Icons List) */}
@@ -310,7 +310,7 @@ const visaData: any = {
             <p className="mt-4">
               Tax-free salary & modern lifestyle opportunities
             </p>
-            <button onClick={() => setActiveCountry("UAE")} className={CTA_BUTTON}>Free Assessment →</button>
+            <button onClick={() => setActiveCountry("UAE")} className={CTA_BUTTON}>Get Started →</button>
           </div>
         </div>
       </SwiperSlide>
@@ -356,7 +356,7 @@ const visaData: any = {
       </p>
 
     <button onClick={() => setActiveCountry("New Zealand")} className={`${CTA_BUTTON} mt-6`}>
-        Free Assessment →
+        Get Started →
       </button>
 
     </div>
