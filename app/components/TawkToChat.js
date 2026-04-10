@@ -1,10 +1,11 @@
 "use client"
-// components/TawkToChat.js
 import { useEffect } from 'react';
 
 const TawkToChat = () => {
   useEffect(() => {
-    var Tawk_API = Tawk_API || {};
+    var Tawk_API = window.Tawk_API || {};
+    var Tawk_LoadStart = new Date();
+
     (function() {
       var s1 = document.createElement("script"),
         s0 = document.getElementsByTagName("script")[0];
@@ -14,6 +15,12 @@ const TawkToChat = () => {
       s1.setAttribute('crossorigin', '*');
       s0.parentNode.insertBefore(s1, s0);
     })();
+
+    window.Tawk_API = window.Tawk_API || {};
+    window.Tawk_API.onLoad = function () {
+      window.Tawk_API.hideWidget(); // 🔥 hides icon
+    };
+
   }, []);
 
   return null;

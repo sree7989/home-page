@@ -1,133 +1,205 @@
-"use client";
+import React, { useEffect, useRef } from "react";
+import countriesData from "./countriesdata";
 
-import { useEffect, useRef } from "react";
-import countries from "./countriesdata.js";
-
-export default function Countries() {
+const Countries = () => {
   const scrollRef = useRef(null);
 
-  // 🔁 AUTO SCROLL (perfect 3 cards slide)
+  const loopData = [...countriesData, ...countriesData];
+
   useEffect(() => {
     const container = scrollRef.current;
 
-    const interval = setInterval(() => {
+    const slide = () => {
       if (!container) return;
 
+      const cardWidth =
+        container.children[0].offsetWidth + 30;
+
       container.scrollBy({
-        left: container.clientWidth,
+        left: cardWidth,
         behavior: "smooth",
       });
 
-      // 🔄 LOOP BACK
-      if (
-        container.scrollLeft + container.clientWidth >=
-        container.scrollWidth
-      ) {
-        container.scrollTo({ left: 0, behavior: "smooth" });
-      }
-    }, 3000);
+      setTimeout(() => {
+        if (container.scrollLeft >= container.scrollWidth / 2) {
+          container.scrollLeft =
+            container.scrollWidth / 2 - container.clientWidth;
+        }
+      }, 600);
+    };
 
+    const interval = setInterval(slide, 2500);
     return () => clearInterval(interval);
   }, []);
 
-  // ⬅️➡️ MANUAL SCROLL
-  const scroll = (dir) => {
-    if (!scrollRef.current) return;
+  const scrollLeft = () => {
+    const container = scrollRef.current;
+    const cardWidth = container.children[0].offsetWidth + 30;
 
-    scrollRef.current.scrollBy({
-      left:
-        dir === "left"
-          ? -scrollRef.current.clientWidth
-          : scrollRef.current.clientWidth,
+    container.scrollBy({
+      left: -cardWidth,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollRight = () => {
+    const container = scrollRef.current;
+    const cardWidth = container.children[0].offsetWidth + 30;
+
+    container.scrollBy({
+      left: cardWidth,
       behavior: "smooth",
     });
   };
 
   return (
-<section className="pt-10 pb-10 bg-[#e9eff5]">      
-      {/* 🔥 HEADING */}
-      <h2 className="text-4xl font-bold text-center mb-12 flex items-center justify-center gap-3 group">
-  
-  {/* 🌍 ICON */}
-  <span className="text-4xl transition-transform duration-300 group-hover:rotate-12">
-    🌍
-  </span>
+    <section style={styles.section}>
 
-  {/* TEXT */}
-  <span>
-    <span className="text-[#06152e] group-hover:text-[#000c1f] transition">
-      Best Countries
-    </span>{" "}
-    
-    <span className="bg-gradient-to-r from-orange-600 to-blue-800 bg-clip-text text-transparent group-hover:from-blue-800 group-hover:to-orange-600 transition-all duration-500">
-      To Study Abroad
-    </span>
-  </span>
+      {/* 🔥 HEADING ADDED */}
+      <h2 style={styles.heading}>
+        Choose Your Favourite <br />
+        Study Destination
+      </h2>
 
-</h2>
+      <div style={styles.wrapper}>
+        
+        <button style={styles.navLeft} onClick={scrollLeft}>
+          &#10094;
+        </button>
 
-      {/* SLIDER WRAPPER */}
-      <div className="relative px-6">
+        <div style={styles.container} ref={scrollRef}>
+          {loopData.map((country, index) => (
+            <div key={index} style={styles.card}>
+              <img
+                src={country.image}
+                alt={country.name}
+                style={styles.image}
+              />
 
-        {/* SLIDER */}
-        <div
-          ref={scrollRef}
-          className="flex overflow-x-auto scroll-smooth scrollbar-hide snap-x snap-mandatory"
-        >
-          {countries.map((item, i) => (
-            
-            <div
-              key={i}
-              className="min-w-[33.33%] flex-shrink-0 px-3 snap-start"
-            >
-              
-              <div className="bg-white rounded-2xl shadow-md p-3 hover:shadow-xl transition">
-                
-                {/* IMAGE */}
-                <div className="relative">
-                  <img
-                    src={item.image}
-                    className="w-full h-[200px] object-cover rounded-xl"
-                  />
-
-                  {/* 🔥 UPDATED FLAG (ONLY CHANGE) */}
-                  <div className="w-14 h-14 rounded-full border-4 border-white absolute -bottom-6 right-4 shadow-xl overflow-hidden">
-                    <img
-                      src={item.flag}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-
-                </div>
-
-                {/* COUNTRY NAME */}
-                <h3 className="mt-6 text-xl font-semibold text-[#0A1F44]">
-                  {item.name}
-                </h3>
-
+              <div style={styles.content}>
+                <h3 style={styles.title}>{country.name}</h3>
+                <p style={styles.desc}>{country.description}</p>
               </div>
             </div>
-
           ))}
         </div>
 
-        {/* ⬅️ LEFT ARROW */}
-        <button
-          onClick={() => scroll("left")}
-          className="absolute left-2 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow hover:scale-110 transition"
-        >
-          ←
-        </button>
-
-        {/* ➡️ RIGHT ARROW */}
-        <button
-          onClick={() => scroll("right")}
-          className="absolute right-2 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow hover:scale-110 transition"
-        >
-          →
+        <button style={styles.navRight} onClick={scrollRight}>
+          &#10095;
         </button>
 
       </div>
     </section>
   );
-}
+};
+
+export default Countries;
+
+/* ===== STYLES ===== */
+
+const styles = {
+  section: {
+    background: "#ffffff",
+    padding: "60px 40px",
+  },
+
+  /* 🔥 HEADING STYLE */
+  heading: {
+    fontSize: "56px",
+    fontWeight: "400",
+    color: "#5b2a86",
+    textAlign: "center",
+    lineHeight: "1.2",
+    marginBottom: "50px",
+    fontFamily: "'Poppins', sans-serif",
+  },
+
+  wrapper: {
+    position: "relative",
+    overflow: "hidden",
+  },
+
+  container: {
+    display: "flex",
+    gap: "30px",
+    overflow: "hidden",
+    paddingLeft: "15px",
+    paddingRight: "15px",
+    boxSizing: "border-box",
+    scrollBehavior: "smooth",
+  },
+
+  card: {
+    minWidth: "calc((100% - 90px) / 4)",
+    background: "#ffffff",
+    borderRadius: "10px",
+    overflow: "hidden",
+    boxShadow: "0 2px 6px rgba(0,0,0,0.04)",
+    cursor: "pointer",
+    display: "flex",
+    flexDirection: "column",
+  },
+
+  image: {
+    width: "100%",
+    height: "280px",
+    objectFit: "cover",
+    borderTopLeftRadius: "10px",
+    borderTopRightRadius: "10px",
+  },
+
+  content: {
+    padding: "40px 25px 30px",
+    textAlign: "center",
+    background: "#f3f4f6",
+    flexGrow: 1,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+  },
+
+  title: {
+    fontSize: "26px",
+    fontWeight: "800",   // ✅ FIXED (was 1100 ❌)
+    marginBottom: "18px",
+    color: "#111",
+    letterSpacing: "0.5px",
+  },
+
+  desc: {
+    fontSize: "17px",
+    color: "#333",
+    lineHeight: "2",
+    fontWeight: "500",   // ✅ FIXED (800 too heavy ❌)
+    maxWidth: "260px",
+    margin: "0 auto",
+  },
+
+  navLeft: {
+    position: "absolute",
+    top: "40%",
+    left: "-10px",
+    zIndex: 10,
+    background: "#fff",
+    border: "none",
+    fontSize: "24px",
+    cursor: "pointer",
+    padding: "10px",
+    borderRadius: "50%",
+    boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+  },
+
+  navRight: {
+    position: "absolute",
+    top: "40%",
+    right: "-10px",
+    zIndex: 10,
+    background: "#fff",
+    border: "none",
+    fontSize: "24px",
+    cursor: "pointer",
+    padding: "10px",
+    borderRadius: "50%",
+    boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+  },
+};

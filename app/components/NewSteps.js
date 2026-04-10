@@ -1,117 +1,214 @@
 "use client";
 
-const services = [
-  {
-    title: "Study Abroad",
-    desc: "Top universities & global education opportunities",
-    icon: "🎓",
-  },
-  {
-    title: "Work Abroad",
-    desc: "High-paying jobs & international career growth",
-    icon: "💼",
-  },
-  {
-    title: "Visa Assistance",
-    desc: "Complete documentation & visa support",
-    icon: "📄",
-  },
-  {
-    title: "Career Guidance",
-    desc: "Personalized counselling for your future",
-    icon: "🧭",
-  },
-];
+import { useRef, useEffect } from "react";
 
 export default function NewSteps() {
+
+  const imgRef = useRef(null);
+
+  // 🔥 NEW (cards ref)
+  const cardRef = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+  ([entry]) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show-right");
+    } else {
+      entry.target.classList.remove("show-right");
+    }
+  },
+  { threshold: 0.3 }
+);
+
+    if (imgRef.current) {
+      observer.observe(imgRef.current);
+    }
+
+    return () => {
+      if (imgRef.current) {
+        observer.unobserve(imgRef.current);
+      }
+    };
+  }, []);
+
+  // 🔥 NEW (cards animation)
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show-up");
+          } else {
+            entry.target.classList.remove("show-up");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    cardRef.current.forEach((el) => {
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      cardRef.current.forEach((el) => {
+        if (el) observer.unobserve(el);
+      });
+    };
+  }, []);
+
+  const services = [
+    {
+      title: "Counseling",
+      desc: "Career Counseling When it comes to taking ownership for developing your career, learning from others is vitally important.",
+      icon: "/icons/counseling.png",
+      bg: "bg-blue-700",
+    },
+    {
+      title: "Documentation",
+      desc: "Applying for overseas education involves a lot more than just filling out an application form. A student would not want to land up",
+      icon: "/icons/documentation.png",
+      bg: "bg-red-600",
+    },
+    {
+      title: "Processing",
+      desc: "VJC inspires students, providing them with all the necessary skills and knowledge needed to engage effectively and easily with",
+      icon: "/icons/processing.png",
+      bg: "bg-blue-700",
+    },
+    {
+      title: "Pre-Departure",
+      desc: "Rest assured that we take no chances when it comes to securing your visa. As a part of our service, all students receive preparation assistance.",
+      icon: "/icons/predeparture.png",
+      bg: "bg-red-600",
+    },
+  ];
+
   return (
-<section className="w-full pt-10 pb-24 bg-white px-10">
-     <div className="text-center mb-20">
-  <h2 className="text-5xl font-bold tracking-tight leading-tight">
-    
-    <span className="text-[#0A1F44]">
-      Turning Your
-    </span>{" "}
-    
-    <span className="bg-gradient-to-r from-orange-500 to-blue-700 text-transparent bg-clip-text">
-      Global Dreams
-    </span>{" "}
-    
-    <span className="text-[#0A1F44]">
-      Into Reality
-    </span>
+    <section className="w-full bg-white py-16 relative overflow-hidden">
 
-  </h2>
-
-  <p className="mt-2 text-gray-800 text-lg">
-    From planning to landing — we guide you at every step
-  </p>
-</div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
-
-        <div className="space-y-10">
-          {services.slice(0, 2).map((item, index) => (
-            <Card key={index} item={item} />
-          ))}
-        </div>
-
-        <div className="flex justify-center">
-          <img
-            src="/services-nature.png"
-            className="w-[800px] h-[800x] object-contain drop-shadow-2xl"
+      {/* ✈️ FLIGHT PATH */}
+      <div className="absolute right-10 top-10 opacity-20">
+        <svg width="300" height="200">
+          <path
+            d="M10 150 Q150 20 290 120"
+            stroke="#9ca3af"
+            strokeDasharray="6 6"
+            fill="transparent"
+            strokeWidth="2"
           />
+        </svg>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+
+        {/* LEFT */}
+        <div>
+          <p className="text-blue-600 font-semibold mb-4 text-2xl">
+            Explore | Travel | Educate
+          </p>
+
+          <h2 className="text-[64px] leading-[1.15] font-bold text-[#0A1F44]">
+            <span className="whitespace-nowrap">
+              Your <span className="text-red-500">success</span> journey
+            </span>
+            <br />
+            start with us!
+          </h2>
+
+          <p className="mt-6 text-gray-600 text-2xl leading-relaxed max-w-xl">
+            VJC Overseas guides you towards global opportunities with expert visa and 
+            education consultancy services. From choosing the right country to securing 
+            your visa, we support you at every step of your journey abroad.
+          </p>
+
+          <button className="mt-10 bg-[#1f6ea5] hover:bg-[#185a87] text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-md transition">
+            Get Free Consultation
+          </button>
         </div>
 
-        <div className="space-y-10">
-          {services.slice(2, 4).map((item, index) => (
-            <Card key={index} item={item} />
-          ))}
+        {/* RIGHT */}
+        <div className="relative flex justify-center">
+
+          <div 
+            ref={imgRef}
+            className="relative w-full max-w-[520px] translate-x-[120px] opacity-0 transition-all duration-1000 ease-out"
+          >
+
+            <img
+              src="/images/vjc-hero-family.jpg"
+              alt="family"
+              className="w-full rounded-[24px] shadow-[0_20px_60px_rgba(0,0,0,0.15)]"
+            />
+
+            <div className="absolute -top-6 right-0 bg-[#169ac4] text-white px-8 py-5 rounded-2xl shadow-xl">
+              <h3 className="text-3xl font-bold leading-none">16+</h3>
+              <p className="text-sm mt-1">Years of Experience</p>
+            </div>
+
+            <div className="absolute -bottom-10 left-[-40px] w-[220px]">
+              <img
+                src="/images/vjc-passport.jpg"
+                alt="passport"
+                className="rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.25)]"
+              />
+            </div>
+
+          </div>
+
         </div>
 
       </div>
+
+      {/* 🔥 SERVICES */}
+      <div className="max-w-7xl mx-auto px-6 mt-24">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          
+          {services.map((item, i) => (
+            <div
+              key={i}
+              ref={(el) => (cardRef.current[i] = el)}
+              className={`${item.bg} text-white rounded-2xl p-6 flex flex-col justify-between min-h-[150px] hover:scale-105 transition duration-700 translate-y-[80px] opacity-0`}
+            >
+              
+              <img
+                src={item.icon}
+                alt={item.title}
+                className="w-16 mb-6 "
+              />
+
+              <h3 className="text-3xl font-extrabold mb-4 tracking-wide">
+                {item.title}
+              </h3>
+
+              <p className="text-lg font-semibold leading-relaxed mb-6 opacity-95">
+                {item.desc}
+              </p>
+
+              <button className="flex items-center gap-3 text-base font-bold mt-2">
+                Learn More →
+              </button>
+
+            </div>
+          ))}
+
+        </div>
+      </div>
+
+      {/* 🔥 ANIMATION */}
+      <style jsx>{`
+        .show-right {
+          transform: translateX(0);
+          opacity: 1;
+        }
+
+        .show-up {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      `}</style>
 
     </section>
-  );
-}
-
-/* 🔥 REUSABLE CARD */
-function Card({ item }) {
-  return (
-    <div
-      className="relative p-8 rounded-2xl 
-      bg-gradient-to-br from-orange-50 to-blue-50 
-      border border-orange-300 
-      shadow-lg 
-      transition-all duration-500 
-      hover:-translate-y-2 overflow-hidden"
-    >
-
-      {/* ICON */}
-      <div className="w-14 h-14 flex items-center justify-center rounded-full 
-        bg-orange-200 text-2xl mb-6 
-        shadow-sm">
-        {item.icon}
-      </div>
-
-      {/* TITLE */}
-      <h3 className="text-2xl font-bold text-[#0A1F44] tracking-tight">
-        {item.title}
-      </h3>
-
-      {/* DESC */}
-      <p className="text-gray-600 mt-3 text-sm leading-relaxed">
-        {item.desc}
-      </p>
-
-      {/* PERMANENT BG EFFECT */}
-      <div className="absolute inset-0 
-        bg-gradient-to-br from-orange-50 to-blue-50 -z-10"></div>
-
-      {/* PERMANENT BOTTOM LINE */}
-      <div className="absolute bottom-0 left-0 w-full h-[3px] 
-        bg-gradient-to-r from-orange-400 to-blue-500"></div>
-
-    </div>
   );
 }

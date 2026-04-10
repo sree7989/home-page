@@ -1,134 +1,201 @@
 "use client";
-
-import React, { useEffect, useRef } from "react";
-
-export default function Description() {
-
-  const imgRef = useRef(null);
-
-  useEffect(() => {
-    const el = imgRef.current;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-  el.classList.add("show-right");
-} else {
-  el.classList.remove("show-right");
-}
-        });
-      },
-      { threshold: 0.3 }
-    );
-
-    if (el) observer.observe(el);
-  }, []);
-
+import React from "react";
+import { FaUserTie, FaChartLine, FaHandsHelping } from "react-icons/fa";
+ 
+export default function WhyChoose() {
   return (
-   <section className="w-full bg-[#f3f4f6] pt-10 pb-20">
-      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-
+    <section style={styles.section}>
+      <div style={styles.container}>
+ 
         {/* LEFT */}
         <div>
-<h2 className="text-5xl font-bold leading-tight m-0 bg-gradient-to-r from-pink-700 via-purple-700 to-indigo-500 bg-clip-text text-transparent">  Why Choose VJC Overseas?
-</h2>
-          <p className="text-gray-600 mt-6 text-lg leading-relaxed">
-            At VJC Overseas, we don’t just process visas — we build migration journeys.
-            With expert consultants, transparent processes, and a proven success record,
-            we help you move abroad with confidence.
+          <p style={styles.topText}>
+            WHY CHOOSE VJC OVERSEAS?
           </p>
-
-          {/* CARDS */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-10">
-
-            <div className="flex gap-4 bg-white p-5 rounded-xl shadow-sm border-l-4 border-orange-500">
-              <div className="text-xl">🎯</div>
+ 
+          <h2 style={styles.heading}>
+            Professional Guidance For <br />
+            Global Opportunities
+          </h2>
+ 
+          <p style={styles.desc}>
+            VJC Overseas delivers trusted and result-driven visa consultancy services.
+            With strong expertise and a proven success record, we help individuals
+            achieve their dream of studying, working, or settling abroad.
+          </p>
+ 
+          <div style={styles.features}>
+ 
+            <div style={styles.feature}>
+              <FaUserTie style={styles.icon} />
               <div>
-                <h4 className="font-semibold">Expert Eligibility Check</h4>
-                <p className="text-sm text-gray-500">
-                  Profile evaluation by certified migration consultants.
+                <h4 style={styles.featureTitle}>Professional Expertise</h4>
+                <p style={styles.featureDesc}>
+                  Over a decade of experience in visa services.
                 </p>
               </div>
             </div>
-
-            <div className="flex gap-4 bg-white p-5 rounded-xl shadow-sm border-l-4 border-orange-500">
-              <div className="text-xl">📋</div>
+ 
+            <div style={styles.feature}>
+              <FaChartLine style={styles.icon} />
               <div>
-                <h4 className="font-semibold">Transparent Process</h4>
-                <p className="text-sm text-gray-500">
-                  No fake promises, only realistic guidance.
+                <h4 style={styles.featureTitle}>High Success Rate</h4>
+                <p style={styles.featureDesc}>
+                  Thousands trust us as the best visa consultants.
                 </p>
               </div>
             </div>
-
-            <div className="flex gap-4 bg-white p-5 rounded-xl shadow-sm border-l-4 border-orange-500">
-              <div className="text-xl">🌍</div>
+ 
+            <div style={styles.feature}>
+              <FaHandsHelping style={styles.icon} />
               <div>
-                <h4 className="font-semibold">Global Visa Expertise</h4>
-                <p className="text-sm text-gray-500">
-                  Australia, Canada, UK, Europe & more.
+                <h4 style={styles.featureTitle}>Personalized Support</h4>
+                <p style={styles.featureDesc}>
+                  Dedicated guidance from start to finish.
                 </p>
               </div>
             </div>
-
-            <div className="flex gap-4 bg-white p-5 rounded-xl shadow-sm border-l-4 border-orange-500">
-              <div className="text-xl">🤝</div>
-              <div>
-                <h4 className="font-semibold">End-to-End Support</h4>
-                <p className="text-sm text-gray-500">
-                  From documentation to visa filing.
-                </p>
-              </div>
-            </div>
-
+ 
           </div>
         </div>
-
+ 
         {/* RIGHT */}
-        <div className="relative flex justify-center">
-
-          <div 
-            ref={imgRef}
-            className="relative w-full max-w-[520px] translate-x-[120px] opacity-0 transition-all duration-1000 ease-out"
-          >
-
-            {/* MAIN IMAGE */}
-            <img
-               src="/images/vjc-hero-family.jpg"
-              alt="family"
-              className="w-full rounded-[24px] shadow-[0_20px_60px_rgba(0,0,0,0.15)]"
-            />
-
-            {/* BADGE */}
-            <div className="absolute -top-6 right-0 bg-[#169ac4] text-white px-8 py-5 rounded-2xl shadow-xl">
-              <h3 className="text-3xl font-bold leading-none">16+</h3>
-              <p className="text-sm mt-1">Years of Experience</p>
-            </div>
-
-            {/* SMALL IMAGE */}
-            <div className="absolute -bottom-10 left-[-40px] w-[220px]">
-              <img
-                src="/images/vjc-passport.jpg"
-                alt="passport"
-                className="rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.25)]"
+        <div style={styles.right}>
+          <div style={styles.imageWrapper}>
+ 
+            {/* ✈️ Flight Path */}
+            <svg style={styles.flightPath} viewBox="0 0 220 220">
+              <path
+                d="M42 52 C58 88, 88 120, 132 155 C150 170, 166 182, 178 198"
+                stroke="#d6d6d6"
+                strokeWidth="2.5"
+                fill="none"
+                strokeDasharray="7,9"
+                strokeLinecap="round"
               />
-            </div>
-
+ 
+              <text
+                x="42"
+                y="52"
+                fontSize="40"
+                fill="#bfbfbf"
+                transform="rotate(-90 34 48)"
+              >
+                ✈
+              </text>
+            </svg>
+ 
+            <img
+              src="/images/vjc-team.jpg"
+              alt="team"
+              style={styles.image}
+            />
+ 
           </div>
-
         </div>
-
+ 
       </div>
-
-      {/* 🔥 ANIMATION */}
-      <style jsx>{`
-        .show-right {
-          transform: translateX(0);
-          opacity: 1;
-        }
-      `}</style>
-
     </section>
   );
 }
+ 
+/* ===== STYLES ===== */
+ 
+const styles = {
+  section: {
+    background: "#fff",
+    padding: "55px 30px",
+  },
+ 
+  container: {
+    display: "grid",
+    gridTemplateColumns: "1.1fr 1fr",
+    gap: "50px",
+    alignItems: "center",
+  },
+ 
+  topText: {
+    color: "#c1121f",
+    fontSize: "17px",
+    fontWeight: "700",
+    marginBottom: "8px",
+  },
+ 
+  heading: {
+    fontSize: "42px",
+    fontWeight: "900",
+    color: "#1f3c73",
+    lineHeight: "1.25",
+    marginBottom: "18px",
+  },
+ 
+  desc: {
+    fontSize: "20px",
+    fontWeight: "500",
+    color: "#444",
+    lineHeight: "1.75",
+    marginBottom: "26px",
+    maxWidth: "540px",
+  },
+ 
+  features: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "22px",
+  },
+ 
+  feature: {
+    display: "flex",
+    gap: "16px",
+    alignItems: "flex-start",
+  },
+ 
+  icon: {
+    fontSize: "24px",
+    color: "#c1121f",
+    marginTop: "6px",
+    flexShrink: 0,
+  },
+ 
+  featureTitle: {
+    fontSize: "22px",
+    fontWeight: "800",
+    color: "#1f3c73",
+    marginBottom: "6px",
+  },
+ 
+  featureDesc: {
+    fontSize: "20px",
+    color: "#333",
+    lineHeight: "1.65",
+  },
+ 
+  right: {
+    display: "flex",
+    justifyContent: "flex-end",
+  },
+ 
+  imageWrapper: {
+    position: "relative",
+    display: "inline-block",
+  },
+ 
+  flightPath: {
+    position: "absolute",
+    right: "300px",
+    top: "90px",
+    width: "205px",
+    height: "220px",
+    pointerEvents: "none",
+    overflow: "visible",
+    zIndex: 2,
+  },
+ 
+  image: {
+    width: "370px",
+    height: "470px",
+    objectFit: "cover",
+    borderRadius: "8px",
+    display: "block",
+  },
+};
