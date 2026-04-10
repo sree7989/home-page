@@ -38,11 +38,27 @@ export default function ServicesDec() {
   return (
     <section style={styles.section}>
 
-      {/* 🔥 HEADING */}
-      <h2 style={styles.heading}>
-        Our Comprehensive <br />
-        Immigration Services
-      </h2>
+      {/* 🔥 TOP HEADER ROW */}
+      <div style={styles.topRow}>
+        
+        {/* LEFT SIDE */}
+        <div>
+          <p style={styles.subHeading}>OUR SERVICES</p>
+
+          <h2 style={styles.heading}>
+            Our Comprehensive <br />
+            Immigration Services
+          </h2>
+        </div>
+
+        {/* RIGHT SIDE */}
+        <div style={styles.rightText}>
+         VJC Overseas offers trusted and efficient visa consultancy services,
+          making us the best visa agent in India. We cater to students, families, tourists,
+          and business professionals with personalized guidance for every visa types.
+        </div>
+
+      </div>
 
       <div style={styles.grid}>
         {services.map((item, i) => (
@@ -93,15 +109,37 @@ const styles = {
     padding:"40px 40px 60px 40px",
   },
 
+  /* 🔥 NEW TOP ROW */
+  topRow: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems:"flex-start",
+    marginBottom: "60px",
+    gap: "40px",
+  },
+
+  subHeading: {
+    color: "#f77f00", // 🔥 ORANGE
+    fontSize: "18px",
+    letterSpacing: "2px",
+    fontWeight: "600",
+      paddingLeft: "140px", 
+  },
+
   heading: {
     fontSize: "52px",
     fontWeight: "400",
     color: "#5b2a86",
-    textAlign: "center",
     lineHeight: "1.2",
-    marginBottom: "60px",
     fontFamily: "'Poppins', sans-serif",
   },
+
+ rightText: {
+  maxWidth: "480px", // before 520px
+  fontSize: "17px",  // slightly reduce
+  color: "#444",
+  lineHeight: "1.9", // little more breathing
+},
 
   grid: {
     display: "grid",
@@ -110,7 +148,7 @@ const styles = {
   },
 
   card: {
-    background: "#ffffff", // 🔥 CHANGED (premium look)
+    background: "#ffffff",
     borderRadius: "12px",
     padding: "35px",
     boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
