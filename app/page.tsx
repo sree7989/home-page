@@ -20,17 +20,17 @@ const ServicesDec = dynamic(
   () => import("@/app/components/ServicesDec"),
   { ssr: false }
 );
-
+// 🔄 EASY PROCESS
+const Scroll = dynamic(() => import("@/app/components/Scroll"), {
+  ssr: false,
+});
 // ⭐ Why VJC
 const Desc = dynamic(
   () => import("@/app/components/Scroll/components/Description"),
   { ssr: false }
 );
 
-// 🔄 EASY PROCESS
-const Scroll = dynamic(() => import("@/app/components/Scroll"), {
-  ssr: false,
-});
+
 
 // 🏆 Awards
 const Awardsection = dynamic(
@@ -81,22 +81,22 @@ export default function Home() {
       <Suspense fallback={<LoadingIndicator />}>
         <Countries />
       </Suspense>
-
+  {/* ⭐ WHY VJC */}
+      <Suspense fallback={<LoadingIndicator />}>
+        <Desc />
+      </Suspense>
       {/* 💼 SERVICES */}
       <Suspense fallback={<LoadingIndicator />}>
         <ServicesDec />
       </Suspense>
-
-      {/* ⭐ WHY VJC */}
-      <Suspense fallback={<LoadingIndicator />}>
-        <Desc />
-      </Suspense>
-
-      {/* 🔄 EASY PROCESS */}
+  {/* 🔄 EASY PROCESS */}
       <Suspense fallback={<LoadingIndicator />}>
         <Scroll />
       </Suspense>
 
+    
+
+    
       {/* 🏆 AWARDS */}
       <Suspense fallback={<LoadingIndicator />}>
         <Awardsection />

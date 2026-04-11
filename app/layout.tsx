@@ -21,16 +21,18 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
+  const childrenArray = Array.isArray(children) ? children : [children];
+  const [firstChild, ...restChildren] = childrenArray;
+
   return (
     <html lang="en">
       <head>
-        {/* ✅ Google Verification */}
         <meta
           name="google-site-verification"
           content="L_PNy3dgEzp57F2JsXfvTXBc7aedqUdzow1IyvEmCUE"
         />
 
-        {/* ✅ Google Ads */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-16767451796"
           strategy="afterInteractive"
@@ -54,7 +56,6 @@ export default function RootLayout({
           `}
         </Script>
 
-        {/* ✅ Facebook Pixel */}
         <Script id="facebook-pixel" strategy="afterInteractive">
           {`
             !function(f,b,e,v,n,t,s)
@@ -71,32 +72,32 @@ export default function RootLayout({
         </Script>
       </head>
 
-      {/* ✅ ONLY CHANGE HERE 👇 */}
       <body className="bg-white" style={{ fontFamily: 'Times New Roman' }}>
         
-        {/* ✅ Navbar (FULL WIDTH) */}
         <Navbar />
 
-        {/* ✅ MAIN CONTENT */}
-        <main className="pt-20">
+        {/* 👇 ADD SIDE GAP HERE */}
+        <main className="pt-20 px-4 sm:px-6 lg:px-10">
 
-          {/* 🔴 FULL WIDTH SECTION (Banner should stay full) */}
-          <EligibilityBanner />
-
-          {/* 🟢 CENTERED CONTENT START */}
-          <div className="max-w-7xl mx-auto px-1 sm:px-2 lg:px-3">
-            {children}
+          {/* 🔥 HERO → FULL WIDTH (NO GAP) */}
+          <div className="-mx-4 sm:-mx-6 lg:-mx-10">
+            {firstChild}
           </div>
-          {/* 🟢 CENTERED CONTENT END */}
 
-          {/* Widgets (can stay full width or move inside if needed) */}
+          {/* 🔴 FULL WIDTH BANNER ALSO */}
+          <div className="-mx-4 sm:-mx-6 lg:-mx-10">
+            <EligibilityBanner />
+          </div>
+
+          {/* 🟢 NORMAL CONTENT WITH GAP */}
+          <div className="max-w-7xl mx-auto">
+            {restChildren}
+          </div>
+
           <ClientWidgets />
-
-          {/* Footer (FULL WIDTH better) */}
           <Footer />
         </main>
 
-        {/* ✅ FB fallback */}
         <noscript>
           <img
             height="1"

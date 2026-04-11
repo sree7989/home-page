@@ -5,32 +5,32 @@ const services = [
   {
     title: "Immigration Services",
     desc: "We offer fast-track PR and permanent residency solutions with expert support.",
-    icon: "🌐",
+    icon: "/icons/immigration.png",
   },
   {
     title: "Dependant Visa",
     desc: "Reunite with your family through our carefully managed dependent visa process.",
-    icon: "👥",
+    icon: "/icons/dependant.png",
   },
   {
     title: "Study Abroad",
     desc: "From choosing the right university to securing your student visa, we guide you through it all.",
-    icon: "🎓",
+    icon: "/icons/study.png",
   },
   {
     title: "Tourist Visa",
     desc: "With our quick and reliable tourist visa services, you can travel stress-free.",
-    icon: "✈️",
+    icon: "/icons/tourist.png",
   },
   {
     title: "Business Visa",
     desc: "We help business owners and investors expand globally with expert consultancy.",
-    icon: "💼",
+    icon: "/icons/business.png",
   },
   {
     title: "Other Services",
     desc: "We assist with documentation, translation, and complete visa services.",
-    icon: "⚙️",
+    icon: "/icons/other.png",
   },
 ];
 
@@ -65,7 +65,10 @@ export default function ServicesDec() {
           <div key={i} style={styles.card} className="card">
 
             <div style={styles.header}>
-              <div style={styles.iconBox}>{item.icon}</div>
+              
+              {/* 🔥 ICON WITHOUT BOX */}
+              <img src={item.icon} alt={item.title} style={styles.iconImg} />
+
               <h3 style={styles.title}>{item.title}</h3>
             </div>
 
@@ -105,11 +108,10 @@ export default function ServicesDec() {
 
 const styles = {
   section: {
-    background: "#e9eff5",
+    background: "#eef3f8",
     padding:"40px 40px 60px 40px",
   },
 
-  /* 🔥 NEW TOP ROW */
   topRow: {
     display: "flex",
     justifyContent: "space-between",
@@ -119,11 +121,11 @@ const styles = {
   },
 
   subHeading: {
-    color: "#f77f00", // 🔥 ORANGE
+    color: "#f77f00",
     fontSize: "18px",
     letterSpacing: "2px",
     fontWeight: "600",
-      paddingLeft: "140px", 
+    paddingLeft: "140px",
   },
 
   heading: {
@@ -135,10 +137,10 @@ const styles = {
   },
 
  rightText: {
-  maxWidth: "480px", // before 520px
-  fontSize: "17px",  // slightly reduce
-  color: "#444",
-  lineHeight: "1.9", // little more breathing
+  maxWidth: "480px",
+  fontSize: "20px",
+  color: "#666",
+  lineHeight: "1.9",
 },
 
   grid: {
@@ -154,6 +156,7 @@ const styles = {
     boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
     position: "relative",
     minHeight: "260px",
+     borderTop: "3px solid #c1121f",
   },
 
   header: {
@@ -163,16 +166,12 @@ const styles = {
     marginBottom: "20px",
   },
 
-  iconBox: {
-    background: "#c1121f",
-    color: "#fff",
+  /* 🔥 ONLY ICON SIZE */
+  iconImg: {
     width: "55px",
     height: "55px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: "10px",
-    fontSize: "24px",
+    objectFit: "contain",
+    marginTop: "5px",
   },
 
   title: {
