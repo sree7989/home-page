@@ -122,7 +122,7 @@ export default function WhyChoose() {
 const styles = {
   section: {
     background: "#fff",
-    padding: "55px 30px",
+    padding: "55px 90px",
   },
 
   container: {

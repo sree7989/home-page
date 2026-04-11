@@ -100,7 +100,7 @@ export default Countries;
 const styles = {
   section: {
     background: "#ffffff",
-    padding: "60px 40px",
+    padding: "20px  80px",
   },
 
   /* 🔥 HEADING STYLE */

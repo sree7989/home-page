@@ -109,7 +109,7 @@ export default function ServicesDec() {
 const styles = {
   section: {
     background: "#eef3f8",
-    padding:"40px 40px 60px 40px",
+    padding:"40px 80px 60px 100px",
   },
 
   topRow: {

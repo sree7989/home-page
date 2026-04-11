@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 const slides = [
   {
-    id: "PERMANENT RESIDENCY",
+    id: "PERMANENT",
     title: "Permanent Residency Visa",
     subtitle: "GLOBAL EXPERTISE / 01",
     desc: "Secure your future abroad with PR visas for Canada, Australia & more.",
@@ -64,7 +64,7 @@ export default function HeroSlider() {
   }, []);
 
   return (
-    <section className="relative w-full h-[72vh] overflow-hidden">
+    <section className="relative w-full h-[85vh] overflow-hidden">
 
       {/* SLIDES */}
       {slides.map((slide, index) => (
@@ -86,12 +86,11 @@ export default function HeroSlider() {
           <div className={`absolute inset-0 ${slide.overlay}`} />
 
           {/* TEXT */}
-          <div className="relative z-20 h-full flex flex-col items-center justify-center text-center text-white px-6">
-            <p className="tracking-[4px] text-xs mb-4 text-blue-400 uppercase">
+<div className="relative z-20 h-full flex flex-col items-center justify-center text-center text-white px-6 pt-10">            <p className="tracking-[4px] text-xs mb-6 text-blue-400 uppercase">
               {slide.subtitle}
             </p>
 
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">
+           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight drop-shadow-lg">
               {slide.title}
             </h1>
 
