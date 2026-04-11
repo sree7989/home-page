@@ -101,7 +101,7 @@ export default function NewSteps() {
         </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+      <div className="max-w-7xl mx-auto px-12 grid md:grid-cols-2 gap-16 items-center">
 
         {/* LEFT */}
         <div>
@@ -162,7 +162,7 @@ export default function NewSteps() {
       </div>
 
       {/* 🔥 SERVICES */}
-      <div className="max-w-7xl mx-auto px-6 mt-24">
+      <div className="max-w-7xl mx-auto px-12 mt-24">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           
           {services.map((item, i) => (
