@@ -7,8 +7,7 @@ import dynamic from "next/dynamic";
 import Hero from "@/app/components/Hero";
 import NewSteps from "@/app/components/NewSteps";
 
-// ✅ 🔥 ADD THIS LINE
-import Form from "./components/Form";
+// ❌ Form REMOVE chesam
 
 // 🌍 Countries
 const Countries = dynamic(() => import("@/app/components/Countries"), {
@@ -20,17 +19,17 @@ const ServicesDec = dynamic(
   () => import("@/app/components/ServicesDec"),
   { ssr: false }
 );
+
 // 🔄 EASY PROCESS
 const Scroll = dynamic(() => import("@/app/components/Scroll"), {
   ssr: false,
 });
+
 // ⭐ Why VJC
 const Desc = dynamic(
   () => import("@/app/components/Scroll/components/Description"),
   { ssr: false }
 );
-
-
 
 // 🏆 Awards
 const Awardsection = dynamic(
@@ -71,9 +70,6 @@ export default function Home() {
       {/* 🔥 HERO */}
       <Hero />
 
-      {/* 🔥 FORM (HERO KINDHA EXACT PLACE) */}
-      <Form />
-
       {/* ✨ DREAM */}
       <NewSteps />
 
@@ -81,22 +77,22 @@ export default function Home() {
       <Suspense fallback={<LoadingIndicator />}>
         <Countries />
       </Suspense>
-  {/* ⭐ WHY VJC */}
+
+      {/* ⭐ WHY VJC */}
       <Suspense fallback={<LoadingIndicator />}>
         <Desc />
       </Suspense>
+
       {/* 💼 SERVICES */}
       <Suspense fallback={<LoadingIndicator />}>
         <ServicesDec />
       </Suspense>
-  {/* 🔄 EASY PROCESS */}
+
+      {/* 🔄 EASY PROCESS */}
       <Suspense fallback={<LoadingIndicator />}>
         <Scroll />
       </Suspense>
 
-    
-
-    
       {/* 🏆 AWARDS */}
       <Suspense fallback={<LoadingIndicator />}>
         <Awardsection />
