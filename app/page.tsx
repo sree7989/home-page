@@ -7,7 +7,8 @@ import dynamic from "next/dynamic";
 import Hero from "@/app/components/Hero";
 import NewSteps from "@/app/components/NewSteps";
 
-// ❌ Form REMOVE chesam
+// ✅ NEW IMPORT
+import HeroExtra from "./components/HeroExtra";
 
 // 🌍 Countries
 const Countries = dynamic(() => import("@/app/components/Countries"), {
@@ -69,6 +70,9 @@ export default function Home() {
       
       {/* 🔥 HERO */}
       <Hero />
+
+      {/* 🔥 HERO EXTRA (Awards + Form) */}
+      <HeroExtra />
 
       {/* ✨ DREAM */}
       <NewSteps />
