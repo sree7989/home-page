@@ -126,11 +126,37 @@ export default function ServicesDec() {
             </div>
           ))}
         </div>
-         <div style={{ textAlign: "center", marginTop: "50px" }}>
-          <button style={{ background: "#c1121f", color: "#fff", padding: "14px 32px", border: "none", borderRadius: "6px" }}>
-            Talk to an Expert →
-          </button>
-        </div>
+        <div style={{ textAlign: "center", marginTop: "50px" }}>
+  <button
+    onClick={() => {
+      document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
+      setTimeout(() => {
+        document.querySelector("#contact-form input")?.focus();
+      }, 500);
+    }}
+    style={{
+      padding: "14px 32px",
+      border: "none",
+      borderRadius: "50px",
+      color: "#fff",
+      fontWeight: "600",
+      cursor: "pointer",
+      background: "linear-gradient(to right, #ff7a18, #2563eb)",
+      transition: "0.3s",
+      boxShadow: "0 8px 20px rgba(0,0,0,0.15)"
+    }}
+    onMouseEnter={(e) =>
+      (e.currentTarget.style.background =
+        "linear-gradient(to right, #2563eb, #ff7a18)")
+    }
+    onMouseLeave={(e) =>
+      (e.currentTarget.style.background =
+        "linear-gradient(to right, #ff7a18, #2563eb)")
+    }
+  >
+    Talk to an Expert →
+  </button>
+</div>
 
       </div>
 
@@ -152,10 +178,11 @@ export default function ServicesDec() {
 /* 🔥 STYLES */
 
 const styles = {
-  section: {
-    background: "#eef1f5",
-    padding: "40px 0",
-  },
+ section: {
+  background: "#eef1f5",
+  padding: "15px 0 40px",
+  marginTop: "-70px",
+},
 
   container: {
     maxWidth: "1250px",

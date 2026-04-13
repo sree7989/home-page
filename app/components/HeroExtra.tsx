@@ -79,6 +79,7 @@ export default function HeroExtra() {
 
   return (
     <section
+    id="contact-form"   
       ref={sectionRef}
        className="bg-white pt-0 pb-6 md:pt-0 md:pb-4 -mt-12 md:-mt-32"
     >

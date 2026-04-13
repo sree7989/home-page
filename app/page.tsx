@@ -47,8 +47,8 @@ const Parallex = dynamic(
 // 🔄 Loader
 function LoadingIndicator() {
   return (
-    <div className="flex justify-center items-center h-40">
-      <div className="w-10 h-10 border-4 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
+    <div className="flex justify-center items-center h-32 sm:h-40 md:h-48">
+      <div className="w-8 h-8 sm:w-10 sm:h-10 border-4 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
     </div>
   );
 }
@@ -66,47 +66,69 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="w-full">
-      
+    <main className="w-full overflow-x-hidden">
+
       {/* 🔥 HERO */}
-      <Hero />
+      <section className="w-full">
+        <Hero />
+      </section>
 
-      {/* 🔥 HERO EXTRA (Awards + Form) */}
-      <HeroExtra />
+      {/* 🔥 HERO EXTRA */}
+      <section className="w-full">
+        <HeroExtra />
+      </section>
 
-      {/* ✨ DREAM */}
-      <NewSteps />
+      {/* 🔹 GLOBAL CONTAINER (for all below sections) */}
+      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 space-y-12 sm:space-y-16 md:space-y-20">
 
-      {/* 🌍 COUNTRIES */}
-      <Suspense fallback={<LoadingIndicator />}>
-        <Countries />
-      </Suspense>
+        {/* ✨ DREAM */}
+        <section className="w-full">
+          <NewSteps />
+        </section>
 
-      {/* ⭐ WHY VJC */}
-      <Suspense fallback={<LoadingIndicator />}>
-        <Desc />
-      </Suspense>
+        {/* 🌍 COUNTRIES */}
+        <section className="w-full">
+          <Suspense fallback={<LoadingIndicator />}>
+            <Countries />
+          </Suspense>
+        </section>
 
-      {/* 💼 SERVICES */}
-      <Suspense fallback={<LoadingIndicator />}>
-        <ServicesDec />
-      </Suspense>
+        {/* ⭐ WHY VJC */}
+        <section className="w-full">
+          <Suspense fallback={<LoadingIndicator />}>
+            <Desc />
+          </Suspense>
+        </section>
 
-      {/* 🔄 EASY PROCESS */}
-      <Suspense fallback={<LoadingIndicator />}>
-        <Scroll />
-      </Suspense>
+        {/* 💼 SERVICES */}
+        <section className="w-full">
+          <Suspense fallback={<LoadingIndicator />}>
+            <ServicesDec />
+          </Suspense>
+        </section>
 
-      {/* 🏆 AWARDS */}
-      <Suspense fallback={<LoadingIndicator />}>
-        <Awardsection />
-      </Suspense>
+        {/* 🔄 EASY PROCESS */}
+        <section className="w-full">
+          <Suspense fallback={<LoadingIndicator />}>
+            <Scroll />
+          </Suspense>
+        </section>
 
-      {/* 🌄 PARALLAX */}
-      <Suspense fallback={<LoadingIndicator />}>
-        <Parallex />
-      </Suspense>
+        {/* 🏆 AWARDS */}
+        <section className="w-full">
+          <Suspense fallback={<LoadingIndicator />}>
+            <Awardsection />
+          </Suspense>
+        </section>
 
+        {/* 🌄 PARALLAX */}
+        <section className="w-full">
+          <Suspense fallback={<LoadingIndicator />}>
+            <Parallex />
+          </Suspense>
+        </section>
+
+      </div>
     </main>
   );
 }

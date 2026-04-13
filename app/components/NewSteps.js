@@ -123,9 +123,17 @@ export default function NewSteps() {
             your visa, we support you at every step of your journey abroad.
           </p>
 
-          <button className="mt-10 bg-[#1f6ea5] hover:bg-[#185a87] text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-md transition">
-            Get Free Consultation
-          </button>
+          <button
+  onClick={() => {
+    document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => {
+      document.querySelector("#contact-form input")?.focus();
+    }, 500);
+  }}
+  className="mt-10 bg-[#1f6ea5] hover:bg-[#185a87] text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-md transition"
+>
+  Get Free Consultation →
+</button>
         </div>
 
         {/* RIGHT */}

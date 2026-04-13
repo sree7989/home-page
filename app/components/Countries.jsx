@@ -98,10 +98,11 @@ export default Countries;
 /* ===== STYLES ===== */
 
 const styles = {
-  section: {
-    background: "#ffffff",
-    padding: "20px  80px",
-  },
+ section: {
+  background: "#ffffff",
+  padding: "10px 80px 30px",
+  marginTop: "-50px",
+},
 
   /* 🔥 HEADING STYLE */
   heading: {

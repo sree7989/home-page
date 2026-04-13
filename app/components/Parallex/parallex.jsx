@@ -146,7 +146,7 @@ export default function TestimonialsSlider() {
   };
 
   return (
-    <section className="w-full bg-[#f7f7f7] py-12 px-10 overflow-hidden">
+  <section className="w-full bg-[#f7f7f7] pt-4 pb-10 px-10 overflow-hidden -mt-4 md:-mt-6">
       <div className="max-w-[1800px] mx-auto relative px-16">
         <h2 className="text-center text-4xl md:text-5xl font-serif text-[#1f2533] mb-16">
           Journeys of Happy Clients

@@ -121,9 +121,10 @@ export default function WhyChoose() {
 
 const styles = {
   section: {
-    background: "#fff",
-    padding: "55px 90px",
-  },
+  background: "#fff",
+  padding: "25px 90px 50px",
+  marginTop: "-40px",
+},
 
   container: {
     display: "grid",

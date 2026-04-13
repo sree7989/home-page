@@ -19,16 +19,16 @@ const countries = [
 
 export default function CountriesCarousel() {
   return (
-<div className="w-full py-6 bg-white overflow-hidden">
+<div className="w-full pt-0 pb-0 md:pt-1 md:pb-0 bg-white overflow-hidden -mt-2 md:-mt-3">
       {/* HEADING */}
-    <h2 className="text-center text-[34px] md:text-[42px] font-semibold text-[#1e3a8a] mb-8 tracking-wide">
+   <h2 className="text-center text-[34px] md:text-[42px] font-semibold text-[#1e3a8a] mb-0 md:mb-1 tracking-wide -mt-4 md:-mt-5">
   Start Your Journey to Top Global Destinations
 </h2>
 
       {/* SCROLL CONTAINER */}
-      <div className="relative w-full overflow-hidden">
+      <div className="relative w-full overflow-hidden mt-0">
 
-       <div className="flex w-max animate-scroll gap-6 pr-10">
+      <div className="flex w-max animate-scroll gap-4 md:gap-6 pr-6">
 
           {/* LOOP TWICE FOR INFINITE EFFECT */}
           {[...countries, ...countries].map((country, index) => (
@@ -69,14 +69,17 @@ export default function CountriesCarousel() {
         }
       `}</style>
       {/* 🔥 BUTTON */}
-      <div className="text-center mt-6">
+    <div className="text-center mt-10 md:mt-11">
   <button
     onClick={() => {
-      document.getElementById("contact-form").scrollIntoView({ behavior: "smooth" });
+      document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
+      setTimeout(() => {
+        document.querySelector("#contact-form input")?.focus();
+      }, 500);
     }}
-    className="px-8 py-3 rounded-full text-white font-semibold flex items-center gap-2 mx-auto transition-all duration-300 bg-gradient-to-r from-orange-500 to-blue-500 hover:from-blue-500 hover:to-orange-500 shadow-lg hover:scale-105"
+    className="px-8 py-3 rounded-full text-white font-semibold flex items-center justify-center gap-2 mx-auto transition-all duration-300 bg-gradient-to-r from-[#ff7a18] to-[#2563eb] hover:from-[#2563eb] hover:to-[#ff7a18] shadow-lg hover:scale-105"
   >
-     Start Your Journey
+    Start Your Journey →
   </button>
 </div>
 
