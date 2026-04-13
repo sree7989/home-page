@@ -68,6 +68,17 @@ export default function CountriesCarousel() {
           }
         }
       `}</style>
+      {/* 🔥 BUTTON */}
+      <div className="text-center mt-6">
+  <button
+    onClick={() => {
+      document.getElementById("contact-form").scrollIntoView({ behavior: "smooth" });
+    }}
+    className="px-8 py-3 rounded-full text-white font-semibold flex items-center gap-2 mx-auto transition-all duration-300 bg-gradient-to-r from-orange-500 to-blue-500 hover:from-blue-500 hover:to-orange-500 shadow-lg hover:scale-105"
+  >
+     Start Your Journey
+  </button>
+</div>
 
     </div>
   );
