@@ -101,7 +101,7 @@ export default function NewSteps() {
         </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto pl-16 pr-10 grid md:grid-cols-2 gap-16 items-center">
+      <div className="max-w-7xl mx-auto pl-10 pr-10 grid md:grid-cols-2 gap-16 items-center">
 
         {/* LEFT */}
         <div>
