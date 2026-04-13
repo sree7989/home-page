@@ -1,204 +1,262 @@
 "use client";
 import React from "react";
 
-const services = [
+const countries = [
   {
-    title: "Immigration Services",
-    desc: "We offer fast-track PR and permanent residency solutions with expert support.",
-    icon: "/icons/immigration.png",
+    name: "Canada",
+    flag: "/flags/canada.png",
+    items: [
+      "PR Visa - Express Entry",
+      "PR Visa - PNP",
+      "Student Visa",
+      "Open Work Permit",
+      "Spouse Visa",
+      "Visitor Visa",
+    ],
   },
   {
-    title: "Dependant Visa",
-    desc: "Reunite with your family through our carefully managed dependent visa process.",
-    icon: "/icons/dependant.png",
+    name: "Australia",
+    flag: "/flags/australia.png",
+    items: [
+      "PR Visa - Express Entry",
+      "PR Visa - PNP",
+      "Student Visa",
+      "Open Work Permit",
+      "Spouse Visa",
+      "Visitor Visa",
+    ],
   },
   {
-    title: "Study Abroad",
-    desc: "From choosing the right university to securing your student visa, we guide you through it all.",
-    icon: "/icons/study.png",
+    name: "Germany",
+    flag: "/flags/germany.png",
+    items: [
+      "Opportunity Card",
+      "Blue Card Visa",
+      "Employment Visa",
+      "Student Visa",
+      "Family Reunion Visa",
+      "Visitor Visa",
+    ],
   },
   {
-    title: "Tourist Visa",
-    desc: "With our quick and reliable tourist visa services, you can travel stress-free.",
-    icon: "/icons/tourist.png",
+    name: "USA",
+    flag: "/flags/usa.png",
+    items: [
+      "Work Visa – H1B",
+      "Study Visa - F1, J1, M1",
+      "Dependent Visa",
+      "B1/B2 Visa",
+      "L1 Visa",
+      "Finance Visa",
+    ],
   },
   {
-    title: "Business Visa",
-    desc: "We help business owners and investors expand globally with expert consultancy.",
-    icon: "/icons/business.png",
-  },
-  {
-    title: "Other Services",
-    desc: "We assist with documentation, translation, and complete visa services.",
-    icon: "/icons/other.png",
+    name: "UK",
+    flag: "/flags/uk.png",
+    items: [
+      "Skilled Worker Visa",
+      "Student Visa – Tier 4",
+      "Visitor Visa",
+      "Spouse Visa",
+      "Business Visa",
+      "Finance Visa",
+    ],
   },
 ];
 
 export default function ServicesDec() {
   return (
     <section style={styles.section}>
+      <div style={styles.container}>
 
-      {/* 🔥 TOP HEADER ROW */}
-      <div style={styles.topRow}>
-        
-        {/* LEFT SIDE */}
-        <div>
-          <p style={styles.subHeading}>OUR SERVICES</p>
+        {/* 🔥 TOP SECTION */}
+        <div style={styles.topRow}>
+          
+          {/* LEFT */}
+          <div>
+            <p style={styles.subHeading}>DREAM COUNTRIES</p>
 
-          <h2 style={styles.heading}>
-            Our Comprehensive <br />
-            Immigration Services
-          </h2>
-        </div>
-
-        {/* RIGHT SIDE */}
-        <div style={styles.rightText}>
-         VJC Overseas offers trusted and efficient visa consultancy services,
-          making us the best visa agent in India. We cater to students, families, tourists,
-          and business professionals with personalized guidance for every visa types.
-        </div>
-
-      </div>
-
-      <div style={styles.grid}>
-        {services.map((item, i) => (
-          <div key={i} style={styles.card} className="card">
-
-            <div style={styles.header}>
-              
-              {/* 🔥 ICON WITHOUT BOX */}
-              <img src={item.icon} alt={item.title} style={styles.iconImg} />
-
-              <h3 style={styles.title}>{item.title}</h3>
-            </div>
-
-            <p style={styles.desc}>{item.desc}</p>
-
-            <div style={styles.arrowBox} className="arrow">→</div>
-
+            <h2 style={styles.heading}>
+              Expert Services Tailored To <br />
+              Your Immigration Needs
+            </h2>
           </div>
-        ))}
+
+          {/* RIGHT */}
+          <div style={styles.rightText}>
+            Recognized widely as the best visa agent for countries such as Canada,
+            Australia, the USA, the UK, Germany, and more. Whether you are applying
+            for a student visa or permanent residency, our visa consultancy services
+            are always up-to-date with evolving immigration policies.
+          </div>
+
+        </div>
+
+        {/* 🔥 COUNTRY CARDS */}
+        <div style={styles.grid}>
+          {countries.map((country, i) => (
+            <div key={i} style={styles.card} className="card">
+
+              <div style={styles.flagWrap}>
+                <img
+  src={country.flag}
+  style={{
+    ...styles.flag,
+    transform:
+      country.name === "Germany"
+        ? "scale(1.95)"   // 🔥 Germany ki
+        : "scale(1.65)",  // others ki
+  }}
+/>
+              </div>
+
+              <h3 style={styles.countryName}>{country.name}</h3>
+
+              <ul style={styles.list}>
+                {country.items.map((item, idx) => (
+                  <li key={idx} style={styles.listItem}>
+                    <span style={styles.tick}>
+  ✓
+</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+            </div>
+          ))}
+        </div>
+         <div style={{ textAlign: "center", marginTop: "50px" }}>
+          <button style={{ background: "#c1121f", color: "#fff", padding: "14px 32px", border: "none", borderRadius: "6px" }}>
+            Talk to an Expert →
+          </button>
+        </div>
+
       </div>
 
-      {/* 🔥 HOVER STYLES */}
+      {/* HOVER */}
       <style jsx>{`
         .card {
           transition: all 0.3s ease;
         }
 
         .card:hover {
-          transform: translateY(-8px);
+          transform: translateY(-6px);
           box-shadow: 0 12px 30px rgba(0,0,0,0.12);
         }
-
-        .card:hover .arrow {
-          transform: translateX(5px);
-        }
-
-        .arrow {
-          transition: all 0.3s ease;
-        }
       `}</style>
-
     </section>
   );
 }
 
-/* ===== STYLES ===== */
+/* 🔥 STYLES */
 
 const styles = {
   section: {
-    background: "#eef3f8",
-    padding:"40px 80px 60px 100px",
+    background: "#eef1f5",
+    padding: "40px 0",
+  },
+
+  container: {
+    maxWidth: "1250px",
+    margin: "0 auto",
+    padding: "0 20px",
   },
 
   topRow: {
     display: "flex",
     justifyContent: "space-between",
-    alignItems:"flex-start",
-    marginBottom: "60px",
-    gap: "40px",
+    alignItems: "flex-start",
+    gap: "60px",
+    marginBottom: "70px",
   },
 
   subHeading: {
-    color: "#f77f00",
-    fontSize: "18px",
-    letterSpacing: "2px",
+    color: "#c1121f",
+    fontSize: "16px",
     fontWeight: "600",
-    paddingLeft: "140px",
+    letterSpacing: "2px",
+    marginBottom: "10px",
   },
 
   heading: {
-    fontSize: "52px",
-    fontWeight: "400",
-    color: "#5b2a86",
+    color: "#1d3557",
+    fontSize: "44px",
+    fontWeight: "700",
     lineHeight: "1.2",
-    fontFamily: "'Poppins', sans-serif",
   },
 
- rightText: {
-  maxWidth: "480px",
-  fontSize: "20px",
-  color: "#666",
-  lineHeight: "1.9",
-},
+  rightText: {
+    maxWidth: "560px",
+    fontSize: "20px",
+    color: "#555",
+    lineHeight: "1.9",
+  },
 
   grid: {
     display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
-    gap: "40px",
+    gridTemplateColumns: "repeat(5, 1fr)",
+    gap: "25px",
   },
 
   card: {
     background: "#ffffff",
-    borderRadius: "12px",
-    padding: "35px",
-    boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
-    position: "relative",
-    minHeight: "260px",
-     borderTop: "3px solid #c1121f",
+    borderRadius: "10px",
+    padding: "30px 20px",
+    textAlign: "center",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
   },
+flagWrap: {
+  width: "80px",
+  height: "80px",
+  borderRadius: "50%",
+  overflow: "hidden",      // 👈 IMPORTANT (cuts extra)
+  margin: "0 auto 20px",
+  boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+},
 
-  header: {
-    display: "flex",
-    alignItems: "center",
-    gap: "18px",
-    marginBottom: "20px",
-  },
+ flag: {
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  transform: "scale(1.25)", // 👈 FINAL FIX
+},
 
-  /* 🔥 ONLY ICON SIZE */
-  iconImg: {
-    width: "55px",
-    height: "55px",
-    objectFit: "contain",
-    marginTop: "5px",
-  },
-
-  title: {
-    fontSize: "24px",
+  countryName: {
+    fontSize: "20px",
     fontWeight: "600",
-    color: "#222",
+    color: "#1d3557",
+    marginBottom: "15px",
   },
 
-  desc: {
-    fontSize: "16px",
-    color: "#555",
-    lineHeight: "1.8",
-    marginTop: "10px",
+  list: {
+    listStyle: "none",
+    padding: 0,
+    margin: 0,
+    textAlign: "left",
   },
+listItem: {
+  fontSize: "16.5px",        // normal size
+  color: "#444",           // normal text (not dark, not dull)
+  marginBottom: "12px",
+  display: "flex",
+  alignItems: "center",
+  gap: "10px",
+  fontWeight: "400",       // 👈 NORMAL (not bold)
+  lineHeight: "1.5",
+},
 
-  arrowBox: {
-    position: "absolute",
-    bottom: "25px",
-    right: "25px",
-    border: "2px solid #c1121f",
-    width: "40px",
-    height: "40px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "#c1121f",
-    fontSize: "18px",
-    cursor: "pointer",
-  },
+  tick: {
+  backgroundColor: "#16a34a",
+  color: "#fff",
+  width: "22px",
+  height: "22px",
+  borderRadius: "50%",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontSize: "13px",
+  fontWeight: "bold",
+  flexShrink: 0,
+},
 };
