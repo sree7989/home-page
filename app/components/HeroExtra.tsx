@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 
-const awards = [
+const slides = [
   {
     title: "India's Best Overseas Education Consultancy Of The Year",
     image: "/images/award1.png",
@@ -19,28 +19,26 @@ const awards = [
 ];
 
 export default function HeroExtra() {
-  const [active, setActive] = useState<number>(0);
+  const [active, setActive] = useState(0);
 
-  const [clients, setClients] = useState<number>(0);
-  const [visa, setVisa] = useState<number>(0);
-  const [reach, setReach] = useState<number>(0);
+  const [clients, setClients] = useState(0);
+  const [visa, setVisa] = useState(0);
+  const [reach, setReach] = useState(0);
 
   const sectionRef = useRef<HTMLElement | null>(null);
-  const hasAnimated = useRef<boolean>(false);
+  const hasAnimated = useRef(false);
 
+  // AUTO SLIDE
   useEffect(() => {
     const interval = setInterval(() => {
-      setActive((prev) => (prev + 1) % awards.length);
+      setActive((prev) => (prev + 1) % slides.length);
     }, 4000);
 
     return () => clearInterval(interval);
   }, []);
 
-  const animateValue = (
-    setter: React.Dispatch<React.SetStateAction<number>>,
-    end: number,
-    speed: number
-  ): void => {
+  // COUNTER ANIMATION
+  const animateValue = (setter: any, end: number, speed: number) => {
     let start = 0;
     const step = Math.ceil(end / 100);
 
@@ -76,74 +74,80 @@ export default function HeroExtra() {
     );
 
     observer.observe(sectionRef.current);
-
     return () => observer.disconnect();
   }, []);
 
   return (
     <section
       ref={sectionRef}
-     className="bg-[#f8f8f8] pt-2 pb-6 md:pt-4 md:pb-8 -mt-12"
+       className="bg-white pt-0 pb-6 md:pt-0 md:pb-4 -mt-12 md:-mt-32"
     >
       <div className="max-w-7xl mx-auto px-4 md:px-6 grid lg:grid-cols-[1.05fr_0.95fr] gap-6 lg:gap-8 items-start">
         
-        {/* LEFT SIDE */}
-        <div>
-          <h2 className="text-[34px] sm:text-[42px] lg:text-[54px] font-extrabold text-[#14213d] leading-[1.08] tracking-[-0.02em] mb-6 md:mb-8">
-            India's Most Trusted Brand
-          </h2>
-
-          {/* Dynamic Image */}
-          <div className="mb-4 md:mb-6 flex justify-center">
-            <img
-              key={active}
-              src={awards[active]?.image ?? ""}
-              alt="Award"
-              className="w-[320px] sm:w-[400px] md:w-[460px] h-auto object-contain transition-all duration-500"
-            />
-          </div>
-
-          {/* Dynamic Text */}
+        {/* LEFT SIDE SLIDER */}
+        <div className="overflow-hidden w-full">
           <div
-            className={`min-h-[80px] md:min-h-[90px] mb-4 md:mb-6 -mt-8 transition-all duration-500
-            ${active === 1 ? "text-center" : "ml-6 md:ml-10 text-left"}`}
+            className="flex transition-transform duration-700 ease-in-out"
+            style={{
+              transform: `translateX(-${active * 100}%)`,
+            }}
           >
-            <p
-              className={`text-[22px] md:text-[26px] text-[#222] font-semibold leading-[1.5] max-w-[750px] 
-              ${active === 1 ? "mx-auto" : ""}`}
-            >
-              {awards[active]?.title ?? ""}
-            </p>
-          </div>
+            {slides.map((item, index) => (
+              <div
+                key={index}
+                className="w-full flex-shrink-0"
+              >
+               <h2 className="text-[34px] sm:text-[42px] lg:text-[54px] font-extrabold text-[#14213d] leading-[1.08] tracking-[-0.02em] mb-1">
+                  India's Most Trusted Brand
+                </h2>
 
-          {/* Stats */}
-          <div className="flex flex-wrap gap-8 md:gap-12 ml-4 md:ml-8">
-            <div>
-              <h4 className="text-[32px] md:text-[38px] font-extrabold text-[#1d4ed8]">
-                {clients.toLocaleString()}+
-              </h4>
-              <p className="text-[17px] md:text-[19px] text-[#555] mt-2 font-medium">
-                Trusted Clients
-              </p>
-            </div>
+                {/* Image */}
+                <div className="flex justify-center -mb-4 md:-mb-6">
+                  <img
+                    src={item.image}
+                    alt="Award"
+                   className="block w-[320px] sm:w-[400px] md:w-[460px] h-auto object-contain"
+                  />
+                </div>
 
-            <div>
-              <h4 className="text-[32px] md:text-[38px] font-extrabold text-[#f97316]">
-                {visa.toLocaleString()}+
-              </h4>
-              <p className="text-[17px] md:text-[19px] text-[#555] mt-2 font-medium">
-                Visa Success
-              </p>
-            </div>
+                {/* Text */}
+             <div className="mb-0 text-center px-4">
+                  <p className="text-[22px] md:text-[26px] text-[#222] font-semibold leading-[1.5] max-w-[750px] mx-auto">
+                    {item.title}
+                  </p>
+                </div>
 
-            <div>
-              <h4 className="text-[32px] md:text-[38px] font-extrabold text-[#1d4ed8]">
-                {reach.toLocaleString()}+
-              </h4>
-              <p className="text-[17px] md:text-[19px] text-[#555] mt-2 font-medium">
-                Global Reach
-              </p>
-            </div>
+                {/* Stats */}
+              <div className="mt-6 flex flex-wrap justify-center gap-6 md:gap-10">
+                  <div>
+                    <h4 className="text-[32px] md:text-[38px] font-extrabold text-[#1d4ed8]">
+                      {clients.toLocaleString()}+
+                    </h4>
+                    <p className="text-[17px] md:text-[19px] text-[#555] mt-2 font-medium">
+                      Trusted Clients
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-[32px] md:text-[38px] font-extrabold text-[#f97316]">
+                      {visa.toLocaleString()}+
+                    </h4>
+                    <p className="text-[17px] md:text-[19px] text-[#555] mt-2 font-medium">
+                      Visa Success
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-[32px] md:text-[38px] font-extrabold text-[#1d4ed8]">
+                      {reach.toLocaleString()}+
+                    </h4>
+                    <p className="text-[17px] md:text-[19px] text-[#555] mt-2 font-medium">
+                      Global Reach
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
