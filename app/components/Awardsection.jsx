@@ -8,7 +8,7 @@ const countries = [
   { name: 'Australia', flag: '/flags/australia.png' },
   { name: 'United Kingdom', flag: '/flags/uk.png' },
   { name: 'United States', flag: '/flags/usa.png' },
-  { name: 'Germany', flag: '/flags/germany-temp.png' },
+  { name: 'Germany', flag: '/flags/germany.png' },
   { name: 'New Zealand', flag: '/flags/nz.png' },
   { name: 'Ireland', flag: '/flags/ireland.png' },
   { name: 'Singapore', flag: '/flags/singapore.png' },
