@@ -146,28 +146,28 @@ export default function TestimonialsSlider() {
   };
 
   return (
-  <section className="w-full bg-[#f7f7f7] pt-4 pb-10 px-10 overflow-hidden -mt-4 md:-mt-6">
-      <div className="max-w-[1800px] mx-auto relative px-16">
-        <h2 className="text-center text-4xl md:text-5xl font-serif text-[#1f2533] mb-16">
+  <section className="w-full bg-[#f7f7f7] pt-4 pb-10 px-10 max-md:px-4 overflow-hidden -mt-4 md:-mt-6">
+      <div className="max-w-[1800px] mx-auto relative px-16 max-md:px-2">
+        <h2 className="text-center text-4xl md:text-5xl max-md:text-2xl font-serif text-[#1f2533] mb-16 max-md:mb-8">
           Journeys of Happy Clients
         </h2>
 
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white w-12 h-12 rounded-full shadow-md flex items-center justify-center"
+          className="absolute left-4 max-md:left-1 top-1/2 -translate-y-1/2 z-20 bg-white w-12 h-12 max-md:w-9 max-md:h-9 rounded-full shadow-md flex items-center justify-center"
         >
           <ChevronLeft />
         </button>
 
         <button
           onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white w-12 h-12 rounded-full shadow-md flex items-center justify-center"
+          className="absolute right-4 max-md:right-1 top-1/2 -translate-y-1/2 z-20 bg-white w-12 h-12 max-md:w-9 max-md:h-9 rounded-full shadow-md flex items-center justify-center"
         >
           <ChevronRight />
         </button>
 
         {/* Cards */}
-        <div className="flex justify-center items-center gap-6">
+        <div className="flex justify-center items-center gap-6 max-md:gap-2">
           {testimonials[currentSlide].map((item, index) => {
             const isCenter = index === 1;
 
@@ -175,37 +175,35 @@ export default function TestimonialsSlider() {
               <div
                 key={index}
                 className={`relative rounded-[24px] overflow-hidden
-                ${isCenter ? "w-[390px] h-[370px]" : "w-[360px] h-[320px]"}`}
+                ${isCenter ? "w-[390px] h-[370px]" : "w-[360px] h-[320px]"}
+                max-md:w-full max-md:h-auto ${index !== 1 ? "max-md:hidden" : ""}`}
               >
-                {/* 🔵 (kept but reduced visual impact naturally by white card) */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-200 via-white to-blue-300 blur-2xl opacity-60"></div>
 
               <div className={`relative bg-white 
 border border-blue-400 
 ${isCenter ? "scale-105 shadow-[0_12px_40px_rgba(59,130,246,0.12)]" : ""}
-p-8 h-full flex flex-col justify-between 
+p-8 max-md:p-5 h-full flex flex-col justify-between 
 shadow-[0_8px_30px_rgba(0,0,0,0.05)]`}>
 
-  {/* 🔵 Corner gradient (background layer) */}
   <div className="absolute top-0 right-0 w-40 h-40 
   bg-[radial-gradient(circle,_rgba(147,197,253,0.4),_transparent_70%)] 
   pointer-events-none"></div>
 
-  {/* ✅ Content */}
   <div className="relative z-10"></div>
                   <div>
-                    <Quote className="text-purple-500 mb-4" />
+                    <Quote className="text-purple-500 mb-4 max-md:mb-2" />
 
-                    <div className="flex gap-2 mb-3">
+                    <div className="flex gap-2 max-md:gap-1 mb-3 max-md:mb-2">
                       {Array.from({ length: item.rating }).map((_, i) => (
-                        <span key={i} className="text-yellow-400 text-xl">★</span>
+                        <span key={i} className="text-yellow-400 text-xl max-md:text-base">★</span>
                       ))}
                     </div>
 
                     <p
                       className={`text-[#2c3553] font-serif ${
                         isCenter ? "text-[22px]" : "text-[18px]"
-                      }`}
+                      } max-md:text-[15px]`}
                       style={{
                         display: "-webkit-box",
                         WebkitLineClamp: 4,
@@ -218,18 +216,18 @@ shadow-[0_8px_30px_rgba(0,0,0,0.05)]`}>
                   </div>
 
                   <div>
-                    <div className="border-t mb-4"></div>
+                    <div className="border-t mb-4 max-md:mb-2"></div>
 
                     <div className="flex items-center gap-3">
                       <img
                         src={item.image}
-                        className="w-12 h-12 rounded-full"
+                        className="w-12 h-12 max-md:w-10 max-md:h-10 rounded-full"
                       />
                       <div>
-                        <h4 className="font-serif text-lg">
+                        <h4 className="font-serif text-lg max-md:text-sm">
                           {item.name}
                         </h4>
-                        <p className="text-gray-500 text-sm">
+                        <p className="text-gray-500 text-sm max-md:text-xs">
                           {item.location}
                         </p>
                       </div>
@@ -242,12 +240,12 @@ shadow-[0_8px_30px_rgba(0,0,0,0.05)]`}>
           })}
         </div>
 
-        <div className="flex justify-center gap-3 mt-12">
+        <div className="flex justify-center gap-3 mt-12 max-md:mt-6">
           {testimonials.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`w-4 h-4 rounded-full ${
+              className={`w-4 h-4 max-md:w-3 max-md:h-3 rounded-full ${
                 currentSlide === index
                   ? "bg-purple-500"
                   : "bg-gray-300"

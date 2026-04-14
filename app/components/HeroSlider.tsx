@@ -64,7 +64,7 @@ export default function HeroSlider() {
   }, []);
 
   return (
-    <section className="relative w-full h-[72vh] overflow-hidden">
+ <section className="relative w-full h-[50vh] sm:h-[55vh] md:h-[72vh] overflow-hidden">
 
       {/* SLIDES */}
       {slides.map((slide, index) => (
@@ -74,7 +74,7 @@ export default function HeroSlider() {
             index === active ? "opacity-100 z-10" : "opacity-0"
           }`}
         >
-          {/* BG IMAGE + ZOOM */}
+          {/* BG IMAGE */}
           <div
             className={`absolute inset-0 bg-cover bg-center transition-transform duration-[7000ms] ${
               index === active ? "scale-110" : "scale-100"
@@ -86,15 +86,16 @@ export default function HeroSlider() {
           <div className={`absolute inset-0 ${slide.overlay}`} />
 
           {/* TEXT */}
-<div className="relative z-20 h-full flex flex-col items-center justify-center text-center text-white px-6 pt-10">            <p className="tracking-[4px] text-xs mb-6 text-blue-400 uppercase">
+<div className="relative z-20 h-full flex flex-col items-center justify-center text-center text-white px-4 md:px-6 pt-2 md:pt-10">            
+            <p className="tracking-[3px] md:tracking-[4px] text-[10px] md:text-xs mb-4 md:mb-6 text-blue-400 uppercase">
               {slide.subtitle}
             </p>
 
-           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight drop-shadow-lg">
+            <h1 className="text-2xl sm:text-3xl md:text-6xl font-extrabold tracking-tight drop-shadow-lg leading-tight">
               {slide.title}
             </h1>
 
-            <p className="mt-4 max-w-xl text-gray-200 text-sm md:text-base">
+            <p className="mt-3 md:mt-4 max-w-md md:max-w-xl text-gray-200 text-xs sm:text-sm md:text-base">
               {slide.desc}
             </p>
           </div>
@@ -103,18 +104,18 @@ export default function HeroSlider() {
 
       {/* BOTTOM TABS */}
       <div className="absolute bottom-0 left-0 w-full bg-black/90 z-30">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex items-center justify-between h-[70px]">
-
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
+          
+          <div className="flex items-center gap-6 md:gap-0 md:justify-between h-[60px] md:h-[70px] overflow-x-auto md:overflow-visible no-scrollbar">
+            
             {slides.map((slide, index) => (
               <button
                 key={index}
                 onClick={() => setActive(index)}
-                className="relative text-xs md:text-sm tracking-widest uppercase text-gray-400 hover:text-white transition"
+                className="relative whitespace-nowrap text-[10px] sm:text-xs md:text-sm tracking-widest uppercase text-gray-400 hover:text-white transition"
               >
                 {slide.id}
 
-                {/* ACTIVE UNDERLINE */}
                 <span
                   className={`absolute left-0 -bottom-2 h-[2px] bg-blue-500 transition-all duration-300 ${
                     index === active ? "w-full" : "w-0"

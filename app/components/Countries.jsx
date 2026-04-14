@@ -54,22 +54,19 @@ const Countries = () => {
 
   return (
     <section style={styles.section}>
-
-      {/* 🔥 HEADING ADDED */}
       <h2 style={styles.heading}>
         Choose Your Favourite <br />
         Study Destination
       </h2>
 
       <div style={styles.wrapper}>
-        
         <button style={styles.navLeft} onClick={scrollLeft}>
           &#10094;
         </button>
 
         <div style={styles.container} ref={scrollRef}>
           {loopData.map((country, index) => (
-            <div key={index} style={styles.card}>
+            <div key={index} style={styles.card} className="card">
               <img
                 src={country.image}
                 alt={country.name}
@@ -87,24 +84,55 @@ const Countries = () => {
         <button style={styles.navRight} onClick={scrollRight}>
           &#10095;
         </button>
-
       </div>
+
+      {/* ✅ RESPONSIVE STYLES */}
+      <style>
+        {`
+          @media (max-width: 1200px) {
+            .card {
+              min-width: calc((100% - 60px) / 3) !important;
+            }
+          }
+
+          @media (max-width: 900px) {
+            .card {
+              min-width: calc((100% - 30px) / 2) !important;
+            }
+
+            h2 {
+              font-size: 40px !important;
+            }
+          }
+
+          @media (max-width: 600px) {
+            .card {
+              min-width: 100% !important;
+            }
+
+            h2 {
+              font-size: 28px !important;
+            }
+
+            button {
+              display: none !important;
+            }
+          }
+        `}
+      </style>
     </section>
   );
 };
 
 export default Countries;
 
-/* ===== STYLES ===== */
-
 const styles = {
- section: {
-  background: "#ffffff",
-  padding: "10px 80px 30px",
-  marginTop: "-50px",
-},
+  section: {
+    background: "#ffffff",
+    padding: "10px 20px 30px",
+    marginTop: "-50px",
+  },
 
-  /* 🔥 HEADING STYLE */
   heading: {
     fontSize: "56px",
     fontWeight: "400",
@@ -124,8 +152,8 @@ const styles = {
     display: "flex",
     gap: "30px",
     overflow: "hidden",
-    paddingLeft: "15px",
-    paddingRight: "15px",
+    paddingLeft: "18px",
+    paddingRight: "18px",
     boxSizing: "border-box",
     scrollBehavior: "smooth",
   },
@@ -161,7 +189,7 @@ const styles = {
 
   title: {
     fontSize: "26px",
-    fontWeight: "800",   // ✅ FIXED (was 1100 ❌)
+    fontWeight: "800",
     marginBottom: "18px",
     color: "#111",
     letterSpacing: "0.5px",
@@ -171,7 +199,7 @@ const styles = {
     fontSize: "17px",
     color: "#333",
     lineHeight: "2",
-    fontWeight: "500",   // ✅ FIXED (800 too heavy ❌)
+    fontWeight: "500",
     maxWidth: "260px",
     margin: "0 auto",
   },

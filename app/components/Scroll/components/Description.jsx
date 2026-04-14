@@ -1,11 +1,10 @@
 "use client";
 import React from "react";
-// ❌ Icons removed
 
 export default function WhyChoose() {
   return (
     <section style={styles.section}>
-      <div style={styles.container}>
+      <div style={styles.container} className="why-container">
 
         {/* LEFT */}
         <div>
@@ -27,13 +26,7 @@ export default function WhyChoose() {
           <div style={styles.features}>
 
             <div style={styles.feature}>
-              {/* ✅ Image added */}
-              <img
-                src="/images/expertise.png"
-                alt="expertise"
-                style={styles.iconImage}
-              />
-
+              <img src="/images/expertise.png" alt="expertise" style={styles.iconImage} />
               <div>
                 <h4 style={styles.featureTitle}>Professional Expertise</h4>
                 <p style={styles.featureDesc}>
@@ -43,13 +36,7 @@ export default function WhyChoose() {
             </div>
 
             <div style={styles.feature}>
-              {/* ✅ Image added */}
-              <img
-                src="/images/success.png"
-                alt="success"
-                style={styles.iconImage}
-              />
-
+              <img src="/images/success.png" alt="success" style={styles.iconImage} />
               <div>
                 <h4 style={styles.featureTitle}>High Success Rate</h4>
                 <p style={styles.featureDesc}>
@@ -59,13 +46,7 @@ export default function WhyChoose() {
             </div>
 
             <div style={styles.feature}>
-              {/* ✅ Image added */}
-              <img
-                src="/images/service.png"
-                alt="support"
-                style={styles.iconImage}
-              />
-
+              <img src="/images/service.png" alt="support" style={styles.iconImage} />
               <div>
                 <h4 style={styles.featureTitle}>Personalized Support</h4>
                 <p style={styles.featureDesc}>
@@ -78,11 +59,10 @@ export default function WhyChoose() {
         </div>
 
         {/* RIGHT */}
-        <div style={styles.right}>
+        <div style={styles.right} className="why-right">
           <div style={styles.imageWrapper}>
 
-            {/* ✈️ Flight Path */}
-            <svg style={styles.flightPath} viewBox="0 0 220 220">
+            <svg style={styles.flightPath} className="flight-path" viewBox="0 0 220 220">
               <path
                 d="M42 52 C58 88, 88 120, 132 155 C150 170, 166 182, 178 198"
                 stroke="#d6d6d6"
@@ -91,7 +71,6 @@ export default function WhyChoose() {
                 strokeDasharray="7,9"
                 strokeLinecap="round"
               />
-
               <text
                 x="42"
                 y="52"
@@ -107,12 +86,56 @@ export default function WhyChoose() {
               src="/images/vjc-team.jpg"
               alt="team"
               style={styles.image}
+              className="why-image"
             />
 
           </div>
         </div>
 
       </div>
+
+      {/* ✅ RESPONSIVE CSS */}
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .why-container {
+            grid-template-columns: 1fr !important;
+            gap: 30px !important;
+          }
+
+          .why-right {
+            justify-content: center !important;
+          }
+
+          .why-image {
+            width: 100% !important;
+            height: auto !important;
+            max-width: 320px;
+          }
+
+          .flight-path {
+            display: none;
+          }
+
+          h2 {
+            font-size: 28px !important;
+            line-height: 1.3 !important;
+          }
+
+          p {
+            font-size: 16px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          section {
+            padding: 20px !important;
+          }
+
+          h2 {
+            font-size: 24px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
@@ -121,10 +144,10 @@ export default function WhyChoose() {
 
 const styles = {
   section: {
-  background: "#fff",
-  padding: "25px 90px 50px",
-  marginTop: "-40px",
-},
+    background: "#fff",
+    padding: "25px 40px 50px",
+    marginTop: "-40px",
+  },
 
   container: {
     display: "grid",
@@ -207,7 +230,6 @@ const styles = {
     width: "205px",
     height: "220px",
     pointerEvents: "none",
-    overflow: "visible",
     zIndex: 2,
   },
 

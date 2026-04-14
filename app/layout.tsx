@@ -77,26 +77,27 @@ export default function RootLayout({
         <Navbar />
 
         {/* 👇 ADD SIDE GAP HERE */}
-        <main className="pt-20 px-4 sm:px-6 lg:px-10">
+        <main className="pt-[60px] md:pt-20 px-4 sm:px-6 lg:px-10">
 
-          {/* 🔥 HERO → FULL WIDTH (NO GAP) */}
-          <div className="-mx-4 sm:-mx-6 lg:-mx-10">
-            {firstChild}
-          </div>
+  {/* HERO → FULL WIDTH */}
+  <section className="-mx-4 sm:-mx-6 lg:-mx-10">
+    {firstChild}
+  </section>
 
-          {/* 🔴 FULL WIDTH BANNER ALSO */}
-          <div className="-mx-4 sm:-mx-6 lg:-mx-10">
-            <EligibilityBanner />
-          </div>
+  {/* FULL WIDTH BANNER */}
+  <section className="-mx-4 sm:-mx-6 lg:-mx-10">
+    <EligibilityBanner />
+  </section>
 
-          {/* 🟢 NORMAL CONTENT WITH GAP */}
-          <div className="max-w-7xl mx-auto">
-            {restChildren}
-          </div>
+  {/* NORMAL CONTENT */}
+  <section className="max-w-7xl mx-auto">
+    {restChildren}
+  </section>
 
-          <ClientWidgets />
-          <Footer />
-        </main>
+  <ClientWidgets />
+  <Footer />
+
+</main>
 
         <noscript>
           <img
