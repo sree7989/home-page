@@ -117,7 +117,7 @@ export default function NewSteps() {
          <p className="mt-6 text-gray-600 text-2xl max-md:text-base leading-relaxed max-w-xl mx-auto">
   VJC Overseas guides you towards global opportunities with expert visa and education consultancy services.
   We simplify your journey with personalized support at every step of the process.
-  From university selection to visa approval, we ensure a smooth and stress-free experience.
+ From university selection to visa approval, we ensure a smooth and stress-free experience.
  </p>
 
           <button
