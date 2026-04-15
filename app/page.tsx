@@ -69,10 +69,9 @@ export default function Home() {
     <main className="w-full overflow-x-hidden">
 
       {/* 🔥 HERO */}
-      <section className="w-full">
-        <Hero />
-      </section>
-
+     <section className="w-full ">
+  <Hero />
+</section>
       {/* 🔥 HERO EXTRA */}
       <section className="w-full">
         <HeroExtra />

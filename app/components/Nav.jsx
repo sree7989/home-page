@@ -21,34 +21,39 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-md border-b border-gray-200">
+<header className="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-sm">      {/* ✅ RIGHT EDGE 16 YEARS LOGO (FIXED ALIGNMENT) */}
+<div className="hidden lg:block absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none">
+  <Image
+    src="/16years-new.webp"
+    alt="16 years"
+    width={140}
+    height={140}
+    className="object-contain"
+  />
+</div>
 
       {/* CONTAINER */}
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-3 sm:px-4 md:px-6 py-2">
-
-        {/* LOGO */}
-        <Link
-          href="/"
-          className="flex items-center gap-2 shrink-0"
-        >
+<div className="w-full flex items-center justify-between pl-4 pr-6 md:pl-5 md:pr-6 py-2 relative z-10">        {/* LEFT: LOGO */}
+        <Link href="/" className="flex items-center gap-2 shrink-0">
           <Image
             src="/logo-1.webp"
             alt="logo"
-            width={40}
-            height={40}
-            className="object-contain w-[24px] sm:w-[30px] md:w-[40px]"
+            width={42}
+            height={42}
+            className="object-contain w-[26px] sm:w-[32px] md:w-[42px]"
           />
 
           <Image
             src="/logo-2.webp"
             alt="logo"
-            width={100}
-            height={40}
-            className="object-contain w-[60px] sm:w-[80px] md:w-[110px]"
+            width={110}
+            height={42}
+            className="object-contain w-[65px] sm:w-[85px] md:w-[115px]"
           />
+         
         </Link>
 
-        {/* DESKTOP MENU */}
+        {/* CENTER: MENU */}
         <nav className="hidden md:flex items-center gap-6 lg:gap-10 text-gray-700">
           {menu.map((item) => {
             const isActive = pathname === item.path;
@@ -76,8 +81,7 @@ export default function Navbar() {
         </nav>
 
         {/* RIGHT SIDE */}
-        <div className="flex items-center gap-2 shrink-0">
-
+        <div className="flex items-center gap-2 shrink-0 pr-36">
           {/* CALL BUTTON */}
           <a
             href="tel:+919160449000"
@@ -105,7 +109,6 @@ export default function Navbar() {
           >
             {open ? "✕" : "☰"}
           </button>
-
         </div>
       </div>
 

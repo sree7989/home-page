@@ -64,7 +64,7 @@ export default function HeroSlider() {
   }, []);
 
   return (
- <section className="relative w-full h-[50vh] sm:h-[55vh] md:h-[72vh] overflow-hidden">
+    <section className="relative w-full h-[38vh] sm:h-[45vh] md:h-[72vh] overflow-hidden  pt-[55px] md:pt-[55px]">
 
       {/* SLIDES */}
       {slides.map((slide, index) => (
@@ -86,8 +86,9 @@ export default function HeroSlider() {
           <div className={`absolute inset-0 ${slide.overlay}`} />
 
           {/* TEXT */}
-<div className="relative z-20 h-full flex flex-col items-center justify-center text-center text-white px-4 md:px-6 pt-2 md:pt-10">            
-            <p className="tracking-[3px] md:tracking-[4px] text-[10px] md:text-xs mb-4 md:mb-6 text-blue-400 uppercase">
+          <div className="relative z-20 h-full flex flex-col items-center justify-center text-center text-white px-4 md:px-6 pt-2 md:pt-10 pb-8 md:pb-0">
+            
+            <p className="tracking-[3px] md:tracking-[4px] text-[10px] md:text-xs mb-2 md:mb-6 text-blue-400 uppercase">
               {slide.subtitle}
             </p>
 
@@ -95,7 +96,7 @@ export default function HeroSlider() {
               {slide.title}
             </h1>
 
-            <p className="mt-3 md:mt-4 max-w-md md:max-w-xl text-gray-200 text-xs sm:text-sm md:text-base">
+            <p className="mt-2 md:mt-4 max-w-md md:max-w-xl text-gray-200 text-xs sm:text-sm md:text-base">
               {slide.desc}
             </p>
           </div>
@@ -106,7 +107,7 @@ export default function HeroSlider() {
       <div className="absolute bottom-0 left-0 w-full bg-black/90 z-30">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           
-          <div className="flex items-center gap-6 md:gap-0 md:justify-between h-[60px] md:h-[70px] overflow-x-auto md:overflow-visible no-scrollbar">
+          <div className="flex items-center gap-6 md:gap-0 md:justify-between h-[50px] md:h-[70px] overflow-x-auto md:overflow-visible no-scrollbar">
             
             {slides.map((slide, index) => (
               <button
