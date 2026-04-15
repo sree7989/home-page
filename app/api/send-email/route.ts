@@ -52,15 +52,19 @@ const mcqQuestions = {
 };
 
 const createTransporter = () => nodemailer.createTransport({
-  service: 'gmail',
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
-  tls: { rejectUnauthorized: true },
 });
 
 export async function POST(request: Request) {
+   console.log("EMAIL USER:", process.env.EMAIL_USER);
+  console.log("EMAIL PASS:", process.env.EMAIL_PASS ? "EXISTS" : "MISSING");
+
   const contentType = request.headers.get('content-type');
 
   if (contentType?.includes('application/json')) {
@@ -80,8 +84,9 @@ export async function POST(request: Request) {
         });
         return NextResponse.json({ message: 'Welcome email sent successfully' });
       } catch (error: any) {
-        return NextResponse.json({ error: 'Error sending welcome email', details: error.message }, { status: 500 });
-      }
+  console.error("FULL EMAIL ERROR:", error); // 👈 IMPORTANT
+  return NextResponse.json({ error: 'Error sending form email', details: error.message }, { status: 500 });
+}
     }
 
     // Job Application Confirmation to User
@@ -199,7 +204,7 @@ export async function POST(request: Request) {
     try {
       await createTransporter().sendMail({
         from: process.env.EMAIL_USER,
-        to: 'vjcbangalore@gmail.com',
+        to: 'bhavyasrim11@gmail.com',
         subject: `New Job Application - ${selectedJob} from ${name}`,
         text: jobDetails,
         attachments: attachment ? [attachment] : [],
