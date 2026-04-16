@@ -122,11 +122,18 @@ export default function ServicesDec() {
         </div>
 
         {/* BUTTON */}
-        <div className="btnWrap">
-          <button className="ctaBtn">
-            Talk to an Expert →
-          </button>
-        </div>
+      <div className="btnWrap">
+  <button
+    onClick={() => {
+      document
+        .getElementById("contact-form")
+        ?.scrollIntoView({ behavior: "smooth" });
+    }}
+    className="ctaBtn"
+  >
+    Talk to an Expert →
+  </button>
+</div>
 
       </div>
 
