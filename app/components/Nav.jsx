@@ -78,7 +78,7 @@ export default function Navbar() {
 
         {/* 16 YEARS BADGE — desktop only (UNTOUCHED) */}
         <div className="hidden lg:block absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none z-10">
-          <Image src="/16years-new.webp" alt="16 years" width={120} height={120} className="object-contain" />
+          <Image src="/16years-new.webp" alt="16 years" width={140} height={140} className="object-contain" />
         </div>
 
         {/* MAIN BAR */}
