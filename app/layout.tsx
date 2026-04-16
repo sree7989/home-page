@@ -77,8 +77,7 @@ export default function RootLayout({
         <Navbar />
 
         {/* 👇 ADD SIDE GAP HERE */}
-        <main className="pt-[60px] md:pt-20 px-4 sm:px-6 lg:px-10">
-
+      <main className="pt-[64px] md:pt-[80px] px-4 sm:px-6 lg:px-10">
   {/* HERO → FULL WIDTH */}
   <section className="-mx-4 sm:-mx-6 lg:-mx-10">
     {firstChild}

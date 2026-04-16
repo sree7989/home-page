@@ -69,13 +69,13 @@ export default function Home() {
     <main className="w-full overflow-x-hidden">
 
       {/* 🔥 HERO */}
-     <section className="w-full ">
+   
   <Hero />
-</section>
-      {/* 🔥 HERO EXTRA */}
-      <section className="w-full">
-        <HeroExtra />
-      </section>
+
+    <div className="mt-[-210px] md:mt-0">
+  <HeroExtra />
+</div>
+   
 
       {/* 🔹 GLOBAL CONTAINER (for all below sections) */}
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 space-y-12 sm:space-y-16 md:space-y-20">
