@@ -10,6 +10,7 @@ export default function Navbar() {
 
   const menu = [
     { name: "Home", path: "/" },
+    { name: "About Us", path: "/about-us" }, // ✅ ADDED (ONLY CHANGE)
     { name: "Study Abroad", path: "/study-abroad" },
     { name: "Work Abroad", path: "/work-abroad" },
     { name: "PR Visas", path: "/pr-visas" },
@@ -76,21 +77,17 @@ export default function Navbar() {
 
       <header className="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-sm">
 
-        {/* 16 YEARS BADGE — desktop only (UNTOUCHED) */}
         <div className="hidden lg:block absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none z-10">
           <Image src="/16years-new.webp" alt="16 years" width={140} height={140} className="object-contain" />
         </div>
 
-        {/* MAIN BAR */}
         <div className="w-full flex items-center justify-between px-3 sm:px-5 md:px-6 py-2 relative z-10">
 
-          {/* LOGO — UNTOUCHED */}
           <Link href="/" className="flex items-center gap-2 shrink-0">
             <Image src="/logo-1.webp" alt="logo" width={42} height={42} className="object-contain w-[26px] sm:w-[34px] md:w-[42px]" />
             <Image src="/logo-2.webp" alt="logo" width={110} height={42} className="object-contain w-[70px] sm:w-[90px] md:w-[115px]" />
           </Link>
 
-          {/* DESKTOP NAV — UNTOUCHED */}
           <nav className="hidden md:flex items-center gap-5 lg:gap-8 text-gray-700">
             {menu.map((item) => {
               const isActive = pathname === item.path;
@@ -103,20 +100,17 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* RIGHT SIDE */}
           <div className="flex items-center gap-2 shrink-0 md:pr-32 lg:pr-36">
 
-            {/* 16 YEARS — mobile only, sits left of burger */}
-<div className="md:hidden absolute left-[55%] -translate-x-1/2 top-1/2 -translate-y-1/2 pointer-events-none z-20">  <Image src="/16years-new.webp" alt="16 years excellence" width={85} height={85} className="object-contain" />
-</div>
+            <div className="md:hidden absolute left-[55%] -translate-x-1/2 top-1/2 -translate-y-1/2 pointer-events-none z-20">
+              <Image src="/16years-new.webp" alt="16 years excellence" width={85} height={85} className="object-contain" />
+            </div>
 
-            {/* CALL BUTTON — hidden on mobile, UNTOUCHED on desktop */}
             <a href="tel:+919160449000" className="hidden md:flex items-center justify-center gap-1.5 h-9 px-5 py-2 rounded-full text-white text-sm bg-gradient-to-r from-orange-500 via-orange-400 to-blue-500 shadow-sm transition-opacity hover:opacity-90 shrink-0">
               <FaPhoneAlt className="text-[13px] shrink-0" />
               <span className="text-sm font-medium whitespace-nowrap">+91 91604 49000</span>
             </a>
 
-            {/* BURGER — mobile only */}
             <label htmlFor="nav-toggle" className="burger-icon" aria-label="Toggle menu">
               <span />
               <span />
@@ -126,7 +120,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* MOBILE MENU — toggles via burger */}
         <div className="mobile-menu md:hidden border-t border-gray-100 bg-white">
           <nav className="flex flex-col items-center gap-4 py-5 px-4">
             {menu.map((item) => {

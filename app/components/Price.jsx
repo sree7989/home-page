@@ -1,121 +1,79 @@
 "use client";
-import Link from "next/link";
-import { motion } from "framer-motion";
 
-const ServiceSection = () => {
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useRef } from "react";
+
+const HeroZoomSection = () => {
+  const ref = useRef(null);
+
+  // 🔥 Section-based scroll (UPDATED)
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  // 🔥 Raw zoom (UPDATED → now uses scrollYProgress instead of scrollY)
+  const scaleRaw = useTransform(scrollYProgress, [0, 1], [1, 1.35]);
+
+  // 🔥 Smooth spring (same)
+  const scale = useSpring(scaleRaw, {
+    stiffness: 100,
+    damping: 30,
+    mass: 0.5,
+  });
+
+  // Overlay goes from DARK → LIGHT (UPDATED to same scroll source)
+  const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0.65, 0.15]);
+
   return (
-    <section
-      className="py-20"
-      style={{ backgroundImage: "url(/comp-1.webp)" }}
-    >
-      <div className="max-w-7xl mx-auto px-5 sm:px-10 md:px-12 lg:px-5">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex flex-col space-y-10"
-        >
-          <div className="flex gap-10 flex-col items-center">
-            <div className="text-center max-w-2xl">
-              <h2 className="text-[2.75rem] font-semibold uppercase text-transparent bg-clip-text bg-gradient-to-tr from-orange-500 to-orange-600 md:text-4xl xl:text-5xl leading-tight">
-                Our Services
-              </h2>
-              <motion.p
-                className="text-gray-700"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 1 }}
-              >
-                At VJC Overseas, we offer a wide range of services designed to
-                support individuals and businesses in achieving their
-                international goals.
-              </motion.p>
-            </div>
-          </div>
+    <section ref={ref} className="relative w-full h-[70vh] overflow-hidden -mt-10">
+      
+      {/* Background Image */}
+      <motion.div
+        style={{ scale }}
+        className="absolute inset-0 z-0 bg-blue-900/50 will-change-transform"
+      >
+        <img
+          src="/comp-1.webp"
+          alt="hero"
+          className="w-full h-full object-cover object-[40%_10%]"
+        />
+      </motion.div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={{
-              hidden: { opacity: 0, y: 50 },
-              visible: {
-                opacity: 1,
-                y: 0,
-                transition: { staggerChildren: 0.2 },
-              },
-            }}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 mx-auto"
-          >
-            {[
-              {
-                id: 1,
-                title: "Visa Consultation",
-                description:
-                  "We guide you through the entire process, from eligibility assessment to documentation submission, ensuring that your application stands the success.",
-                recommended: false,
-                link: "/",
-              },
-              {
-                id: 2,
-                title: "Permanent Residency Visas",
-                description:
-                  "We expertise in processing Permanent Residency Visa services to individuals and families seeking to establish long-term residency in countries such as Canada, Australia, and New Zealand.",
-                recommended: true,
-                link: "/pr-visas",
-              },
-              {
-                id: 3,
-                title: "Resume Marketing",
-                description:
-                  "Our team stays updated with the latest immigration policies and provides personalised advice to help you make informed decisions.",
-                recommended: false,
-                link: "/resume-marketing",
-              },
-            ].map((service) => (
-              <motion.div
-                key={service.id}
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-                className={`relative rounded-lg border bg-white h-96 p-6 sm:p-10 space-y-6 shadow-xl hover:shadow-2xl hover:border-gray-200 hover:-translate-y-2 transition duration-300 ${
-                  service.recommended
-                    ? "bg-gray-100 shadow-gray-200/40"
-                    : "shadow-transparent"
-                }`}
-              >
-                {service.recommended && (
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 px-3 py-1 rounded-b-lg bg-gray-200 text-gray-700">
-                    Recommended
-                  </div>
-                )}
-                <div className="text-center space-y-3">
-                  <h2 className="font-semibold text-2xl text-gray-900 uppercase">
-                    {service.title}
-                  </h2>
-                  <p className="text-gray-700">{service.description}</p>
-                </div>
-                <div className="flex relative py-1 before:absolute before:top-1/2 before:inset-0 before:h-px before:bg-gray-200" />
-                <div className="flex justify-center">
-                  <Link
-                    href={service.link}
-                    className={`outline-none w-max mx-auto flex items-center h-11 px-5 rounded-md ${
-                      service.recommended
-                        ? "bg-orange-500 text-white"
-                        : "bg-gray-200 text-orange-500"
-                    }`}
-                  >
-                    Book Now
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+      {/* Blue Overlay (DARK → LIGHT) */}
+      <motion.div
+        style={{ opacity: overlayOpacity }}
+        className="absolute inset-0 bg-blue-900 z-10"
+      />
+
+      {/* Content */}
+      <div className="relative z-20 flex items-center justify-center h-full text-center px-5">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="max-w-4xl mx-auto"
+        >
+          <h1 className="text-white text-4xl md:text-6xl font-semibold leading-[1.1] tracking-tight font-sans w-full text-center">
+            <span className="block md:whitespace-nowrap">
+              Need Experts To Assist You With Your
+            </span>
+            <span className="block">
+              Visa Application?
+            </span>
+          </h1>
+
+          <p className="text-white mt-6 text-xl md:text-2xl font-medium whitespace-nowrap text-center">
+            You are at the right place. VJC Overseas is your one stop solution for all your immigration related queries.
+          </p>
+
+          <button className="mt-8 bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-md font-semibold transition">
+            GET IN TOUCH
+          </button>
         </motion.div>
       </div>
     </section>
   );
 };
 
-export default ServiceSection;
+export default HeroZoomSection;

@@ -1,78 +1,156 @@
-"use client"
-import React from 'react';
-import { motion } from "framer-motion";
-import { containerVariants, titleVariants, desVariants } from "../../animation";
+"use client";
+import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Nav from "@/app/components/Nav";
-import Form from "@/app/components/Form";
 import Link from "next/link";
+
+/* COUNT UP COMPONENT */
+const CountUp = ({ end, suffix = "" }) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const observerRef = useRef(null);
+
+  useEffect(() => {
+    const node = ref.current;
+
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            startCounting();
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    if (node) observerRef.current.observe(node);
+
+    return () => {
+      if (node) observerRef.current.unobserve(node);
+    };
+  }, []);
+
+  const startCounting = () => {
+    let start = 0;
+    const duration = 1500;
+    const increment = end / (duration / 16);
+
+    const counter = setInterval(() => {
+      start += increment;
+      if (start >= end) {
+        setCount(end);
+        clearInterval(counter);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 16);
+  };
+
+  return (
+    <span ref={ref}>
+      {count}
+      {suffix}
+    </span>
+  );
+};
+
 const CompOne = () => {
   return (
     <>
       <Nav />
-      <section className=" py-4 lg:py-0 mt-2 md:mt-0 lg:mt-10 bg-gradient-to-bl from-white to-white relative">
-        {/* Parallax Background with Overlay */}
-        <div
-          className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-0"
-          style={{ backgroundImage: 'url(/b1.webp)' }}
-          animate={{ y: ['0%', '5%'] }}
-          transition={{
-            y: { repeat: Infinity, repeatType: "reverse", duration: 10, ease: "easeInOut" },
-          }}
-        >
-          <div className="absolute top-0 left-0 w-full h-full bg-black opacity-80 z-10"></div>
-        </div>
 
-        <motion.div
-          variants={containerVariants(0.4)}
-          initial="offscreen"
-          animate="onscreen"
-          className="mx-auto lg:max-w-7xl w-full px-5 sm:px-10 md:px-12 lg:px-5 grid lg:grid-cols-2 lg:items-center gap-10 relative z-10"
-        >
-          {/* Left Section (Text) */}
-          <motion.div
-            variants={containerVariants(0.4)}
-            className="flex flex-col space-y-8 sm:space-y-10 lg:items-center text-center lg:text-left max-w-2xl md:max-w-3xl mx-auto"
-          >
-            <motion.h1
-              variants={titleVariants}
-              className="font-semibold uppercase leading-tight text-center text-teal-950 text-4xl sm:text-5xl lg:text-[3.50rem] mt-20"
-            >
-              <span className="text-transparent bg-clip-text bg-gradient-to-tr from-gray-100 to-orange-600">
-                About Us <br />VJC Overseas
-              </span>
-            </motion.h1>
-             <motion.p
-      variants={desVariants}
-      className="text-gray-300 tracking-tight text-center md:font-medium max-w-xl mx-auto lg:max-w-lg"
-    >
-      Welcome to VJC Overseas, a trusted name in the field of overseas education and{" "}
-      <Link
-        href="https://www.vjcoverseas.com/services"
-        className="font-bold text-orange-400  hover:text-orange-500 transition-colors duration-300"
-      >
-        Immigration Support Services
-      </Link>
-      . Founded in 2009, we began as a local firm with a simple yet powerful goal: to provide
-      the highest quality services to students aspiring to study abroad and professionals seeking
-      to build their careers overseas. Over the years, our commitment to excellence has transformed
-      us into a leading name in the industry.
-    </motion.p>
-          </motion.div>
+      {/* MAIN SECTION */}
+      <section className="w-full bg-white py-6 lg:py-10">
+        <div className="max-w-7xl mx-auto px-5 sm:px-10 grid lg:grid-cols-2 gap-10 items-start">
+          
+          {/* LEFT CONTENT */}
+          <div className="space-y-6 mt-4 lg:mt-0">
+            
+            {/* Small Heading */}
+            <p className="text-lg font-semibold text-orange-500 uppercase tracking-wider">
+              About VJC Overseas
+            </p>
 
-          {/* Right Section (Form) */}
-          <div
-            variants={containerVariants(0.8)}
-            initial="offscreen"
-            animate="onscreen"
-            className="flex justify-center lg:justify-start mt-6 lg:mt-0"
-          >
-            <div
-              className="w-full max-w-md sm:max-w-lg md:max-w-xl md:mt-20 lg:max-w-full"
-            >
-              <Form />
+            {/* Big Heading */}
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight text-gray-900">
+  Shaping Global Careers <br />
+  With Trusted <span className="text-blue-500">Guidance</span>
+</h1>
+            {/* Content */}
+            <p className="text-gray-900 max-w-xl text-xl leading-relaxed">
+              Welcome to VJC Overseas, a trusted name in overseas education and
+              Immigration Support Services. Since 2009, we’ve been dedicated to guiding
+              students and professionals toward achieving their global ambitions with
+              confidence and clarity. Our expert team provides personalized support at
+              every step, ensuring a smooth and hassle-free journey from application to
+              destination.
+            </p>
+
+            <p className="text-gray-900 max-w-xl text-xl leading-relaxed">
+              With years of experience and a strong international network, we connect
+              individuals with the right universities and career opportunities abroad.
+              Our commitment to transparency, reliability, and success has helped
+              thousands of aspirants build brighter futures. 
+            </p>
+
+            {/* STATS ROW */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6">
+              
+              <div className="border rounded-xl p-4 text-center">
+                <h2 className="text-2xl font-bold text-blue-500">
+                  <CountUp end={1000} suffix="+" />
+                </h2>
+                <p className="text-sm text-gray-600">Students Placed Abroad</p>
+              </div>
+
+              <div className="border rounded-xl p-4 text-center">
+                <h2 className="text-2xl font-bold text-blue-500">
+                  <CountUp end={98} suffix="%" />
+                </h2>
+                <p className="text-sm text-gray-600">Visa Success Rate</p>
+              </div>
+
+              <div className="border rounded-xl p-4 text-center">
+                <h2 className="text-2xl font-bold text-blue-500">
+                  <CountUp end={16} suffix="+" />
+                </h2>
+                <p className="text-sm text-gray-600">Years Experience</p>
+              </div>
+
+              <div className="border rounded-xl p-4 text-center">
+                <h2 className="text-2xl font-bold text-blue-500">
+                  <CountUp end={100} suffix="%" />
+                </h2>
+                <p className="text-sm text-gray-600">Transparency</p>
+              </div>
+
+            </div>
+
+            {/* BUTTON */}
+           <div className="pt-4 flex justify-center ">
+  <Link
+    href="/contact"
+    className="inline-block px-8 py-3 bg-orange-500 text-white rounded-lg font-medium hover:bg-orange-600 transition"
+  >
+    Get Started
+  </Link>
+</div>
+          </div>
+
+          {/* RIGHT IMAGE */}
+          <div className="relative w-full h-[500px] sm:h-[600px] lg:h-[750px]">
+            <div className="absolute inset-0 rounded-2xl overflow-hidden">
+              <Image
+                src="/about-us.png"
+                alt="About VJC Overseas"
+                fill
+                className="object-cover"
+              />
             </div>
           </div>
-        </motion.div>
+
+        </div>
       </section>
     </>
   );

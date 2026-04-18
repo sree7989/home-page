@@ -1,11 +1,11 @@
 import React from 'react'
 import Hero from "./files/hero";
+import Reviews from "./files/reviews"; // ✅ ADDED
 import Two from "./files/two";
 import CTA from "./files/cta";
 import Three from "./files/three";
 import Four from "./files/four";
 import Price from "@/app/components/Price";
-
 import Why from "./files/Why";
 
 export const metadata = {
@@ -17,16 +17,17 @@ export const metadata = {
 const page = () => {
   return (
     <>
-    <div className="max-w-full overflow-hidden">
-    <Hero/>
-    <Why/>
-    <Two/>
-    <CTA/>
-    <Four/>
-    <Price/>
-    <Three/>
-   
-    </div>
+      <div className="max-w-full overflow-hidden">
+        <Hero/>
+        <Reviews/> {/* ✅ ADDED HERE */}
+      
+        <Two/>
+          <Why/>
+        <CTA/>
+        <Four/>
+        <Price/>
+        <Three/>
+      </div>
     </>
   )
 }
