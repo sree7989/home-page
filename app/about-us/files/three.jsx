@@ -3,9 +3,9 @@ import { useState } from "react";
 
 const faqs = [
   {
-    question: "What is Glocal Opportunities?",
+    question: "What is Global Opportunities?",
     answer:
-      "Glocal Opportunities is a leading visa and immigration consultancy helping individuals study, work, and settle abroad with expert guidance and end-to-end support.",
+      "Global Opportunities is a leading visa and immigration consultancy helping individuals study, work, and settle abroad with expert guidance and end-to-end support.",
   },
   {
     question: "How do I know if I qualify for immigration?",

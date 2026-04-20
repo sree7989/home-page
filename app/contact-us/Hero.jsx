@@ -45,7 +45,7 @@ const links = [
 
 export default function InternalLinksGrid() {
   return (
-    <section className="max-w-7xl mx-auto px-6 py-16">
+    <section className="max-w-7xl mx-auto px-6 pt-6 pb-12">
       <h2 className="text-center text-3xl md:text-4xl font-bold mb-12">
         Connect With <span className="text-orange-500">VJC Overseas</span>
       </h2>
