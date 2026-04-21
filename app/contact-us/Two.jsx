@@ -12,10 +12,9 @@ export default function ContactSection() {
         <div className="flex flex-col md:flex-row items-center justify-center gap-10 px-4">
           
           {/* Left: Form */}
-          <div className=" w-full max-w-xl">
-            <Form />
-          </div>
-
+          <div className=" w-full max-w-2xl">
+  <Form />
+</div>
           {/* Right: Only Image */}
 <div className="flex justify-center md:justify-start items-center w-full -ml-6 md:-ml-6 relative">
   <div className="relative w-full h-[750px]">

@@ -81,11 +81,14 @@ export default function ServicesDec() {
             </h2>
           </div>
 
-          <div style={styles.rightText} className="rightText">
-            Recognized widely as the best visa agent for countries such as Canada,
-            Australia, the USA, the UK, Germany, and more.
-          </div>
+        <div style={styles.rightText} className="rightText">
+  Recognized widely as the best visa agent for countries such as Canada,
+  Australia, the USA, the UK, Germany, and more.  
 
+  We have helped thousands of clients successfully achieve their global dreams
+  with expert guidance and personalized support at every step.  
+
+</div>
         </div>
 
         {/* GRID */}

@@ -17,10 +17,10 @@ const offers = [
 ];
 
 const stats = [
-  { value: "2000+", label: "Successful Visas" },
-  { value: "1500+", label: "Students Placed Abroad" },
-  { value: "3000+", label: "IELTS Students Trained" },
-  { value: "2500+", label: "PTE Students Trained" },
+  { value: "7500+", label: "Dreams Fulfilled with Student Visas" },
+  { value: "2000+", label: "Careers Started with Job Seeker Visas" },
+  { value: "1000+", label: "Families Settled with PR Visas" },
+  { value: "30000+", label: "Hassle-Free Visit & Tourist Visas" },
 ];
 
 export default function CompFour() {

@@ -99,16 +99,16 @@ const CompOne = () => {
               
               <div className="border rounded-xl p-4 text-center">
                 <h2 className="text-2xl font-bold text-blue-500">
-                  <CountUp end={1000} suffix="+" />
+                  <CountUp end={7500} suffix="+" />
                 </h2>
                 <p className="text-sm text-gray-600">Students Placed Abroad</p>
               </div>
 
               <div className="border rounded-xl p-4 text-center">
                 <h2 className="text-2xl font-bold text-blue-500">
-                  <CountUp end={98} suffix="%" />
+                  <CountUp end={2000} suffix="+" />
                 </h2>
-                <p className="text-sm text-gray-600">Visa Success Rate</p>
+                <p className="text-sm text-gray-600">Job Seeker Visas</p>
               </div>
 
               <div className="border rounded-xl p-4 text-center">
@@ -120,9 +120,9 @@ const CompOne = () => {
 
               <div className="border rounded-xl p-4 text-center">
                 <h2 className="text-2xl font-bold text-blue-500">
-                  <CountUp end={100} suffix="%" />
+                  <CountUp end={30000} suffix="+" />
                 </h2>
-                <p className="text-sm text-gray-600">Transparency</p>
+                <p className="text-sm text-gray-600">Visit/Tourist Visas</p>
               </div>
 
             </div>

@@ -120,18 +120,19 @@ export default function NewSteps() {
  From university selection to visa approval, we ensure a smooth and stress-free experience.
  </p>
 
-          <button
-            onClick={() => {
-              document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
-              setTimeout(() => {
-                document.querySelector("#contact-form input")?.focus();
-              }, 500);
-            }}
-            className="mt-8 md:mt-10 bg-[#1f6ea5] hover:bg-[#185a87] text-white px-6 md:px-8 py-3 md:py-4 rounded-xl text-base md:text-lg font-semibold shadow-md transition"
-          >
-            Get Free Consultation →
-          </button>
-        </div>
+          
+       <button
+  onClick={() => {
+    document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => {
+      document.querySelector("#contact-form input")?.focus();
+    }, 500);
+  }}
+  className="w-full md:w-auto px-6 md:px-8 py-3 rounded-full text-white font-semibold flex items-center justify-start gap-2 mt-4 transition-all duration-300 bg-gradient-to-r from-[#ff7a18] to-[#2563eb] hover:from-[#2563eb] hover:to-[#ff7a18] shadow-lg hover:scale-105"
+>
+  Get Free Consultation →
+</button>
+      </div>
 
         {/* RIGHT */}
         <div className="relative flex justify-center">
@@ -147,7 +148,7 @@ export default function NewSteps() {
               className="w-full rounded-[24px] shadow-[0_20px_60px_rgba(0,0,0,0.15)]"
             />
 
-            <div className="absolute -top-6 right-0 bg-[#169ac4] text-white px-6 md:px-8 py-4 md:py-5 rounded-2xl shadow-xl">
+            <div className="absolute -top-6 right-0 bg-orange-500 text-white px-6 md:px-8 py-4 md:py-5 rounded-2xl shadow-xl">
               <h3 className="text-2xl md:text-3xl font-bold leading-none">16+</h3>
               <p className="text-xs md:text-sm mt-1">Years of Experience</p>
             </div>
