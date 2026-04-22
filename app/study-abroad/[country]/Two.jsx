@@ -2,11 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
-import ModalFormWithPopup from "../../Popup/Popup";
-import Studyabroad from "../../Popup/Studyabroad";
 import Form from "./Form";
+
 import USAStudyVisa from "./usa";
 import UAEStudyVisa from "./uae";
 import CanadaStudyVisa from "./CanadaStudyVisa";
@@ -32,111 +29,69 @@ import Lux from "./Lux";
 import Dubai from "./Dubai";
 import Denmark from "./Denmark";
 
-// Visa Data
 const visaData = [
   { name: "Study in USA", path: "/study-abroad/usa", image: "/usa1.jpg" },
   { name: "Study in Uk", path: "/study-abroad/uk", image: "/uk1.webp" },
   { name: "Study in Canada", path: "/study-abroad/canada", image: "/canada1.jpg" },
   { name: "Study in Australia", path: "/study-abroad/australia", image: "/study-in-australia-flag.jpg" },
-  { name: "Study in Germany", path: "/study-abroad/germany", image: "/germany.jpg" },
-  { name: "Study in Italy", path: "/study-abroad/italy", image: "/itlay.jpg" },
-  { name: "Study in France", path: "/study-abroad/france", image: "/france.jpg" },
-  { name: "Study in Singapore", path: "/study-abroad/singapore", image: "/singapore.jpg" },
-  { name: "Study in Malaysia", path: "/study-abroad/malaysia", image: "/m.jpg" },
-  { name: "Study in South Africa", path: "/study-abroad/southafrica", image: "/sa.webp" },
-  { name: "Study in New Zealand", path: "/study-abroad/newzealand", image: "/nz.webp" },
-  { name: "Study in Philippines", path: "/study-abroad/philippines", image: "/p.jpg" },
-  { name: "Study in Poland", path: "/study-abroad/poland", image: "/pol.webp" },
-  { name: "Study in Ireland", path: "/study-abroad/ireland", image: "/ir.jpg" },
-  { name: "Study in Spain", path: "/study-abroad/spain", image: "/spa.avif" },
-  { name: "Study in Netherlands", path: "/study-abroad/netherlands", image: "/net.webp" },
-  { name: "Study in Switzerland", path: "/study-abroad/switzerland", image: "/sw.webp" },
-  { name: "Study in Denmark", path: "/study-abroad/denmark", image: "/de.jpg" },
-  { name: "Study in Dubai", path: "/study-abroad/dubai", image: "/du.webp" },
-  { name: "Study in Luxembourg", path: "/study-abroad/luxembourg", image: "/lux.jpg" },
-  { name: "Study in Hongkong", path: "/study-abroad/hongkong", image: "/study-in-hongkong-flag.jpg" },
-  { name: "Study in UAE", path: "/study-abroad/uae", image: "/ua.jpg" },
-  { name: "Study in Norway", path: "/study-abroad/norway", image: "/norwaystudy.avif" },
-  { name: "Study in Sweden", path: "/study-abroad/sweden", image: "/swedenstudy.jpg" },
 ];
 
 const defaultVisa = {
-  name: "Study Abroad with VJC",
+  name: "Study Abroad",
   path: "/study-abroad",
-
 };
 
 const Migrate = () => {
-  const router = useRouter();
   const pathname = usePathname();
   const [selectedVisa, setSelectedVisa] = useState(defaultVisa);
- const [isImageLoaded, setIsImageLoaded] = useState(false);
-   const [isOpen, setIsOpen] = useState(false);
- 
-   useEffect(() => {
-     setIsImageLoaded(true);
-   }, []);
-  
-    
+
   useEffect(() => {
     const foundVisa = visaData.find((visa) => visa.path === pathname);
     setSelectedVisa(foundVisa || defaultVisa);
   }, [pathname]);
 
-  const handleVisaClick = (visa) => {
-    setSelectedVisa(visa);
-    router.push(visa.path);
-  };
-
   return (
     <div className="w-full min-h-screen flex flex-col">
-      {/* ===== TOP SECTION ===== */}
-     <div
-  className="relative w-full min-h-[80vh] bg-cover bg-center -mt-20"
-  style={{ backgroundImage: `url(${selectedVisa.image})` }}
->
-        <div className="absolute inset-0 bg-black/50 z-0" />
-        <div className="relative z-10 w-full h-full flex items-start justify-center px-6 lg:px-10 py-0">
-          <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-10">
-            {/* Heading */}
-            <motion.div
-className="w-full lg:w-1/2 text-white text-center lg:text-left pt-0 lg:pt-0 lg:pl-10"              transition={{ duration: 0.6 }}
-            >
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3rem] font-semibold uppercase leading-tight">
-                {selectedVisa.name}
-              </h1>
-              <p className="mt-4 text-base sm:text-lg lg:text-xl max-w-xl">
-                Discover top global destinations to pursue your dreams. Choose your study country and take the first step today!
-              </p>
-               <div className="mt-8 flex justify-center lg:justify-start">
-            <button
-              type="button"
-              onClick={() => setIsOpen(true)}
-              className="relative overflow-hidden bg-gradient-to-r from-sky-400 to-orange-500 text-white font-semibold py-2 px-6 rounded-full shadow-md hover:shadow-xl hover:scale-105 transition duration-300"
-            >
-              <span className="relative z-10">Apply Now</span>
-              <span className="absolute top-0 left-[-100%] w-full h-full bg-white/30 animate-shine" />
-            </button>
-          </div>
-            </motion.div>
 
-            {/* Form */}
-            <div className="w-full lg:w-1/2 mt-8 lg:mt-12">
-              <Form />
-            </div>
-          </div>
+      {/* ===== HERO SECTION ===== */}
+      <div
+        className="relative w-full min-h-[80vh] bg-cover bg-center -mt-20"
+        style={{ backgroundImage: `url(${selectedVisa.image})` }}
+      >
+        <div className="absolute inset-0 bg-black/50 z-0" />
+
+        <div className="relative z-10 w-full h-full flex items-center justify-center px-6">
+          <motion.div className="text-white text-center">
+            <h1 className="text-4xl md:text-5xl font-bold uppercase">
+              {selectedVisa.name}
+            </h1>
+            <p className="mt-4 text-lg">
+              Explore global education opportunities and start your journey today.
+            </p>
+          </motion.div>
         </div>
       </div>
+     
 
-      {/* ===== BOTTOM SECTION ===== */}
-      <div className="relative z-10 w-full bg-white px-4 sm:px-6 lg:px-12 pt-10 pb-16">
-        <div className="w-full flex flex-col md:flex-row gap-8 md:gap-10 items-start">
-          {/* Visa Info Content Box (first on mobile, last on desktop) */}
-          <div
-  className="w-full md:w-2/3 p-4 md:p-6 rounded-xl border border-gray-300 shadow-md relative mt-6 
-             order-first md:order-last
-             max-h-[900px] md:max-h-[700px] lg:max-h-[1900px] overflow-y-auto"
->
+      {/* ===== MAIN SECTION (NEW LAYOUT) ===== */}
+    <div className="relative w-full bg-white px-4 sm:px-6 lg:px-12 pt-10 pb-12">
+      {/* 👇 CURVED TOP SHAPE */}
+<div className="absolute top-0 left-0 w-full overflow-hidden leading-none -translate-y-full">
+  <svg
+    viewBox="0 0 1440 100"
+    className="w-full h-[80px]"
+    preserveAspectRatio="none"
+  >
+    <path
+  d="M0,100 Q720,-20 1440,100 L1440,100 L0,100 Z"
+  fill="white"
+/>
+  </svg>
+</div>
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-10">
+
+          {/* LEFT → CONTENT */}
+          <div className="w-full lg:w-2/3">
             {selectedVisa.name === "Study in USA" ? (
               <USAStudyVisa />
             ) : selectedVisa.name === "Study in Canada" ? (
@@ -186,57 +141,24 @@ className="w-full lg:w-1/2 text-white text-center lg:text-left pt-0 lg:pt-0 lg:p
             ) : selectedVisa.name === "Study in Denmark" ? (
               <Denmark />
             ) : (
-              <div className="text-gray-700 text-lg leading-relaxed">
-                Please select a visa type from the left to view more details.
-              </div>
+              <div>Select a country</div>
             )}
           </div>
 
-          {/* Study Destination Buttons (last on mobile, first on desktop) */}
-          <div className="w-full md:w-1/3 order-last md:order-first">
-            <div className="flex justify-center md:justify-start mb-8 ml-0 md:ml-11">
-              <h2 className="text-3xl font-bold text-gray-800 bg-gradient-to-r from-orange-500 to-black bg-clip-text text-transparent text-center md:text-left">
-                <span className="block">Plan Your Study Abroad,</span>
-                <span className="block">Shape Your Future</span>
-                
-              </h2>
-              
-            </div>
-             <div className="mt-4 mb-10 flex justify-center lg:hidden">
-    <button
-      type="button"
-      onClick={() => setIsOpen(true)}
-      className="relative overflow-hidden bg-gradient-to-r from-sky-400 to-orange-500 text-white font-semibold py-2 px-6 rounded-full shadow-md hover:shadow-xl hover:scale-105 transition duration-300"
-    >
-      <span className="relative z-10">Apply Now</span>
-      <span className="absolute top-0 left-[-100%] w-full h-full bg-white/30 animate-shine" />
-    </button>
-  </div>
-            {visaData.map((visa) => (
-              <div key={visa.path} className="mb-4 w-full">
-                <Link href={visa.path} className="block w-full">
-                  <div
-                    className={`w-full flex items-center justify-between text-lg font-semibold px-6 py-4 rounded-xl transition duration-300 shadow-lg ${
-                      selectedVisa.path === visa.path
-                        ? "bg-orange-500 text-white border-orange-500 shadow-orange-400"
-                        : "bg-transparent text-black border border-orange-500 hover:bg-orange-500 hover:text-white"
-                    } transform hover:scale-105`}
-                  >
-                    {visa.name}
-                    <ArrowRight className="w-6 h-6" />
-                  </div>
-                </Link>
+          {/* RIGHT → STICKY FORM */}
+          <div className="w-full lg:w-1/3">
+            <div className="sticky top-24">
+              <div className="p-6 border rounded-xl shadow-lg">
+                <h2 className="text-xl font-bold mb-4 text-center">
+                  Apply Now
+                </h2>
+                <Form />
               </div>
-            ))}
+            </div>
           </div>
+
         </div>
       </div>
-       {/* POPUP FORM */}
-      <ModalFormWithPopup
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        customContent={<Studyabroad />}
-      />
     </div>
   );
 };
