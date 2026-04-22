@@ -100,15 +100,14 @@ export default function Migrate() {
       {/* ══ PAGE ══════════════════════════════════════════════════ */}
       <main className="w-full bg-white font-sans">
 
-        {/* ── Orange top stripe ── */}
-        <div className="h-1 w-full bg-gradient-to-r from-orange-400 via-orange-500 to-orange-400" />
+      
 
         {/* ══════════════════════════════════════════
             HERO — white bg, form TOP RIGHT
         ══════════════════════════════════════════ */}
         <section className="w-full bg-white border-b border-orange-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-10 lg:py-14">
-            <div className="flex flex-col lg:flex-row gap-10 lg:gap-14 items-start">
+<div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-0 pb-4">
+   <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 items-start -mt-10">
 
               {/* LEFT: headline + stats + swiper */}
               <div className="w-full lg:w-[58%] flex flex-col gap-6">

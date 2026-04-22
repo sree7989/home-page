@@ -4,19 +4,62 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaPhoneAlt } from "react-icons/fa";
 import { usePathname } from "next/navigation";
+import { useState, useRef, useEffect } from "react";
+import { ChevronDown } from "lucide-react";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [showStudy, setShowStudy] = useState(false);
+  const [mobileStudyOpen, setMobileStudyOpen] = useState(false);
+
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setShowStudy(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const menu = [
     { name: "Home", path: "/" },
-    { name: "About Us", path: "/about-us" }, // ✅ ADDED (ONLY CHANGE)
+    { name: "About Us", path: "/about-us" },
     { name: "Study Abroad", path: "/study-abroad" },
     { name: "Work Abroad", path: "/work-abroad" },
     { name: "PR Visas", path: "/pr-visas" },
     { name: "Resume Marketing", path: "/resume-marketing" },
     { name: "Our Services", path: "/services" },
     { name: "Contact Us", path: "/contact-us" },
+  ];
+
+  const studyabroadSubPages = [
+    { name: "USA", path: "/study-abroad/usa" },
+    { name: "United Kingdom", path: "/study-abroad/uk" },
+    { name: "Canada", path: "/study-abroad/canada" },
+    { name: "Australia", path: "/study-abroad/australia" },
+    { name: "Germany", path: "/study-abroad/germany" },
+    { name: "Italy", path: "/study-abroad/italy" },
+    { name: "France", path: "/study-abroad/france" },
+    { name: "Singapore", path: "/study-abroad/singapore" },
+    { name: "Malaysia", path: "/study-abroad/malaysia" },
+    { name: "South Africa", path: "/study-abroad/southafrica" },
+    { name: "New Zealand", path: "/study-abroad/newzealand" },
+    { name: "Philippines", path: "/study-abroad/philippines" },
+    { name: "Poland", path: "/study-abroad/poland" },
+    { name: "Ireland", path: "/study-abroad/ireland" },
+    { name: "Spain", path: "/study-abroad/spain" },
+    { name: "Netherlands", path: "/study-abroad/netherlands" },
+    { name: "Switzerland", path: "/study-abroad/switzerland" },
+    { name: "Denmark", path: "/study-abroad/denmark" },
+    { name: "Dubai", path: "/study-abroad/dubai" },
+    { name: "Luxembourg", path: "/study-abroad/luxembourg" },
+    { name: "Hongkong", path: "/study-abroad/hongkong" },
+    { name: "UAE", path: "/study-abroad/uae" },
+    { name: "Norway", path: "/study-abroad/norway" },
+    { name: "Sweden", path: "/study-abroad/sweden" },
   ];
 
   return (
@@ -88,11 +131,65 @@ export default function Navbar() {
             <Image src="/logo-2.webp" alt="logo" width={110} height={42} className="object-contain w-[70px] sm:w-[90px] md:w-[115px]" />
           </Link>
 
+          {/* DESKTOP MENU */}
           <nav className="hidden md:flex items-center gap-5 lg:gap-8 text-gray-700">
             {menu.map((item) => {
               const isActive = pathname === item.path;
+
+              if (item.name === "Study Abroad") {
+                return (
+                  <div
+                    key={item.name}
+                    ref={dropdownRef}
+                    className="relative flex items-center gap-1"
+                  >
+                    {/* MAIN PAGE LINK */}
+                    <Link
+                      href="/study-abroad"
+                      className={`relative text-[13px] lg:text-[15px] transition-colors cursor-pointer ${
+                        isActive
+                          ? "text-orange-500 font-semibold"
+                          : "hover:text-orange-500"
+                      }`}
+                    >
+                      {item.name}
+                      <span className={`absolute left-0 -bottom-1 h-[2px] bg-orange-500 transition-all duration-300 ${isActive ? "w-full" : "w-0"}`} />
+                    </Link>
+
+                    {/* ARROW */}
+                    <ChevronDown
+                      size={18}
+                      className={`cursor-pointer transition-transform duration-300 ${
+                        showStudy ? "rotate-180" : ""
+                      }`}
+                      onClick={() => setShowStudy(!showStudy)}
+                    />
+
+                    {/* DROPDOWN */}
+                    {showStudy && (
+                      <div className="absolute top-full left-0 mt-2 bg-white shadow-xl rounded-lg p-4 grid grid-cols-3 gap-2 w-[500px] z-50">
+                        {studyabroadSubPages.map((sub) => (
+                          <Link
+                            key={sub.name}
+                            href={sub.path}
+                            className="text-sm hover:text-orange-500"
+                            onClick={() => setShowStudy(false)}
+                          >
+                            {sub.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
               return (
-                <Link key={item.name} href={item.path} className={`relative text-[13px] lg:text-[15px] transition-colors ${isActive ? "text-orange-500 font-semibold" : "hover:text-orange-500"}`}>
+                <Link
+                  key={item.name}
+                  href={item.path}
+                  className={`relative text-[13px] lg:text-[15px] transition-colors ${isActive ? "text-orange-500 font-semibold" : "hover:text-orange-500"}`}
+                >
                   {item.name}
                   <span className={`absolute left-0 -bottom-1 h-[2px] bg-orange-500 transition-all duration-300 ${isActive ? "w-full" : "w-0"}`} />
                 </Link>
@@ -120,12 +217,55 @@ export default function Navbar() {
           </div>
         </div>
 
+        {/* MOBILE MENU */}
         <div className="mobile-menu md:hidden border-t border-gray-100 bg-white">
           <nav className="flex flex-col items-center gap-4 py-5 px-4">
             {menu.map((item) => {
               const isActive = pathname === item.path;
+
+              if (item.name === "Study Abroad") {
+                return (
+                  <div key={item.name} className="w-full text-center">
+                    <div
+                      className="flex items-center justify-center gap-2"
+                      onClick={() => setMobileStudyOpen(!mobileStudyOpen)}
+                    >
+                      <Link
+                        href={item.path}
+                        className={`text-[15px] font-medium transition-colors ${isActive ? "text-orange-500" : "text-gray-700 hover:text-orange-500"}`}
+                      >
+                        {item.name}
+                      </Link>
+                      <ChevronDown
+                        size={16}
+                        className={`transition-transform ${mobileStudyOpen ? "rotate-180" : ""}`}
+                      />
+                    </div>
+
+                    {mobileStudyOpen && (
+                      <div className="mt-2 flex flex-col gap-1">
+                        {studyabroadSubPages.map((sub) => (
+                          <Link
+                            key={sub.name}
+                            href={sub.path}
+                            className="text-sm text-gray-600"
+                            onClick={() => setMobileStudyOpen(false)}
+                          >
+                            {sub.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
               return (
-                <Link key={item.name} href={item.path} className={`text-[15px] font-medium transition-colors ${isActive ? "text-orange-500" : "text-gray-700 hover:text-orange-500"}`}>
+                <Link
+                  key={item.name}
+                  href={item.path}
+                  className={`text-[15px] font-medium transition-colors ${isActive ? "text-orange-500" : "text-gray-700 hover:text-orange-500"}`}
+                >
                   {item.name}
                 </Link>
               );

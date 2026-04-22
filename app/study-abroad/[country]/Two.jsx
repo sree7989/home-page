@@ -91,19 +91,16 @@ const Migrate = () => {
   return (
     <div className="w-full min-h-screen flex flex-col">
       {/* ===== TOP SECTION ===== */}
-      <div
-        className="relative w-full min-h-[80vh] bg-cover bg-center"
-        style={{ backgroundImage: `url(${selectedVisa.image})` }}
-      >
+     <div
+  className="relative w-full min-h-[80vh] bg-cover bg-center -mt-20"
+  style={{ backgroundImage: `url(${selectedVisa.image})` }}
+>
         <div className="absolute inset-0 bg-black/50 z-0" />
-        <div className="relative z-10 w-full h-full flex items-center justify-center px-6 lg:px-10 py-4">
+        <div className="relative z-10 w-full h-full flex items-start justify-center px-6 lg:px-10 py-0">
           <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-10">
             {/* Heading */}
             <motion.div
-              className="w-full lg:w-1/2 text-white text-center lg:text-left pt-24 sm:pt-32 lg:pt-0 lg:pl-10"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+className="w-full lg:w-1/2 text-white text-center lg:text-left pt-0 lg:pt-0 lg:pl-10"              transition={{ duration: 0.6 }}
             >
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3rem] font-semibold uppercase leading-tight">
                 {selectedVisa.name}
