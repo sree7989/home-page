@@ -417,7 +417,7 @@ const prevSlide = () => {
       </div>
 
       {/* ===== MAIN SECTION ===== */}
-      <div className="relative w-full bg-slate-50 px-4 sm:px-6 lg:px-12 pt-10 pb-12">
+      <div className="relative w-full bg-slate-50 px-4 sm:px-6 lg:px-12 pt-3 pb-12">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-10">
 
           {/* LEFT — COUNTRY CONTENT */}
