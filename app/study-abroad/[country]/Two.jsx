@@ -402,8 +402,7 @@ className="px-5 py-2 lg:px-7 lg:py-3 font-semibold rounded-lg text-white shadow-
                   key={hero.image}
                   src={hero.image}
                   alt={selectedVisa.name}
-className="w-[200px] sm:w-[240px] lg:w-auto object-contain drop-shadow-2xl"            
-      onError={(e) => { e.currentTarget.style.display = "none"; }}
+                  onError={(e) => { e.currentTarget.style.display = "none"; }}
                 />
               ) : null}
             </div>
@@ -413,7 +412,7 @@ className="w-[200px] sm:w-[240px] lg:w-auto object-contain drop-shadow-2xl"
       </div>
 
       {/* ===== MAIN SECTION ===== */}
-      <div className="relative w-full bg-slate-50 px-4 sm:px-6 lg:px-12 pt-3 pb-12">
+      <div className="relative w-full bg-slate-50 px-4 sm:px-6 lg:px-12 pt-3 pb-6">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-10">
 
           {/* LEFT — COUNTRY CONTENT */}
