@@ -250,6 +250,15 @@ const Migrate = () => {
   const pathname = usePathname();
   const [selectedVisa, setSelectedVisa] = useState(defaultVisa);
   const [active, setActive] = useState(0);
+  const totalSlides = countryGroups.length;
+
+const nextSlide = () => {
+  setActive((prev) => (prev + 1) % totalSlides);
+};
+
+const prevSlide = () => {
+  setActive((prev) => (prev - 1 + totalSlides) % totalSlides);
+};
 
   useEffect(() => {
     const foundVisa = visaData.find((visa) => visa.path === pathname);
@@ -422,11 +431,30 @@ const Migrate = () => {
 
               {/* EXPLORE COUNTRIES SLIDER */}
               <div className="p-0 overflow-hidden">
-                <div className="mb-5 text-center">
-                  <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
-                    Explore Countries
-                  </h2>
-                </div>
+                <div className="mb-5 flex items-center justify-between px-2">
+
+  {/* LEFT BUTTON */}
+  <button
+    onClick={prevSlide}
+    className="px-3 py-1 bg-orange-500 text-white rounded-md"
+  >
+    {"<"}
+  </button>
+
+  {/* TITLE */}
+  <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
+    Explore Countries
+  </h2>
+
+  {/* RIGHT BUTTON */}
+  <button
+    onClick={nextSlide}
+    className="px-3 py-1 bg-orange-500 text-white rounded-md"
+  >
+    {">"}
+  </button>
+
+</div>
 
                 <div className="overflow-hidden">
                   <motion.div
@@ -446,6 +474,7 @@ const Migrate = () => {
                               {country.replace("Study in ", "")}
                             </button>
                           ))}
+
                         </div>
                         <div className="grid grid-cols-3 gap-3">
                           {group.slice(3, 6).map((country, idx) => (
