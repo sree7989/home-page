@@ -316,8 +316,7 @@ const prevSlide = () => {
     <div className="w-full min-h-screen flex flex-col">
 
       {/* ===== HERO SECTION ===== */}
-      <div className="relative w-full overflow-hidden -mt-20" style={{ minHeight: "85vh" }}>
-
+<div className="relative w-full overflow-hidden -mt-20 min-h-[70vh] lg:min-h-[85vh]">
         {/* BACKGROUND GRADIENT */}
         <div
           className="absolute inset-0"
@@ -347,7 +346,7 @@ const prevSlide = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full max-w-7xl mx-auto">
 
             {/* LEFT — TEXT */}
-            <div className="text-white space-y-8 pt-24 lg:pt-0">
+            <div className="text-white space-y-6 pt-16 lg:pt-0">
               {hero ? (
                 <div className="space-y-2">
                   {/* Line 1 */}
@@ -384,14 +383,12 @@ const prevSlide = () => {
               {/* CTA Buttons */}
               <div className="flex flex-wrap gap-4">
                 <button
-                  className="px-7 py-3 font-semibold rounded-lg text-white shadow-lg transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"
-                  style={{ background: "#1d4ed8", fontSize: "1rem" }}
+className="px-5 py-2 lg:px-7 lg:py-3 font-semibold rounded-lg text-white shadow-lg transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"                  style={{ background: "#1d4ed8", fontSize: "1rem" }}
                 >
                   Free Expert Consultation
                 </button>
                 <button
-                  className="px-7 py-3 font-semibold rounded-lg text-white shadow-lg transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"
-                  style={{ background: "#1d4ed8", fontSize: "1rem" }}
+className="px-5 py-2 lg:px-7 lg:py-3 font-semibold rounded-lg text-white shadow-lg transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"                  style={{ background: "#1d4ed8", fontSize: "1rem" }}
                 >
                  Check Eligibility
                 </button>
@@ -399,15 +396,14 @@ const prevSlide = () => {
             </div>
 
             {/* RIGHT — IMAGE */}
-            <div className="flex items-center justify-center lg:justify-end pt-24 lg:pt-0">
-              {hero?.image ? (
+<div className="flex items-end justify-center lg:justify-end pt-6 lg:pt-0">            
+    {hero?.image ? (
                 <img
                   key={hero.image}
                   src={hero.image}
                   alt={selectedVisa.name}
-                  className="w-auto object-contain drop-shadow-2xl"
-                  style={{ maxHeight: "460px", maxWidth: "100%" }}
-                  onError={(e) => { e.currentTarget.style.display = "none"; }}
+className="w-[200px] sm:w-[240px] lg:w-auto object-contain drop-shadow-2xl"            
+      onError={(e) => { e.currentTarget.style.display = "none"; }}
                 />
               ) : null}
             </div>
